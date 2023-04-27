@@ -19,6 +19,9 @@ const Instructions = () => {
         <Link to="/Study" className="btn btn-primary" role="button">
           Beginnen
         </Link>
+        <Link to="/" className="btn btn-primary" role="button">
+          Zurück
+        </Link>
       </div>
     </div>
   );
