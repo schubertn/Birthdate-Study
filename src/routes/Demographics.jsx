@@ -20,7 +20,7 @@ export default function Demographics() {
           subjektive Einschätzung der Eingabemethoden.
         </p>
 
-        <Link to="/Study" className="btn btn-primary" role="button">
+        <Link to="/Study" className="btn btn-custom" role="button">
           Test zurück zur Studie
         </Link>
       </div>

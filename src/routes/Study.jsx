@@ -44,7 +44,7 @@ export default function Study() {
             Diese Seite ist nur vorübergehend hier. Später sollen an dieser
             Stelle einfach nur die Daten der Studie gespeichert werden.
           </p>
-          <Link to="/Demographics" className="btn btn-primary" role="button">
+          <Link to="/Demographics" className="btn btn-custom" role="button">
             Weiter zu den Fragen
           </Link>
         </div>
@@ -77,7 +77,7 @@ export default function Study() {
               </div>
               <div className="col-auto">
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-custom"
                   onClick={() => {
                     localStorage.setItem("progress", progress.toString());
                     localStorage.setItem("counter", counter.toString());

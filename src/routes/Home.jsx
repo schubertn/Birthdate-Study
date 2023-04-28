@@ -19,11 +19,12 @@ export default function Home() {
           Hier ist die Startseite. Hier werden Sie eine Einleitung und weitere
           Informationen zur Studie lesen.
         </p>
-
-        <Link to="/Instructions" className="btn btn-primary" role="button">
+        <Link to="/Instructions" className="btn btn-custom" role="button">
           Weiter zur Anleitung
         </Link>
       </div>
     </div>
   );
 }
+
+// className="btn btn-primary shadow-none" if we want to remove the shadow on button click
