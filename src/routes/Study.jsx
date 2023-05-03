@@ -1,4 +1,3 @@
-//import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
@@ -7,75 +6,30 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 import { db } from "../firebase";
 
-//import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
-//import {db} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-
-/**
-function setTestValues() {
-  var btnTypes = [
-    "btn btn-primary",
-    "btn btn-secondary",
-    "btn btn-success",
-    "btn btn-danger",
-  ];
-  btnType = btnTypes[Math.floor(Math.random() * btnTypes.length)];
-  var dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
-  randomDate = dates[Math.floor(Math.random() * dates.length)];
-}
-*/
-
 export default function Study() {
   var progress = parseInt(localStorage.getItem("progress")) || 20;
   progress = progress + 10;
   var counter = parseInt(localStorage.getItem("counter")) || 0;
 
-  const [todo, setTodo] = useState("");
+  const [inputText, setInputText] = useState("");
 
-  const addTodo = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const docRef = await addDoc(collection(db, "todos"), {
-        todo: todo,
+      const docRef = await addDoc(collection(db, "testing"), {
+        text: inputText,
       });
       console.log("Document written with ID: ", docRef.id);
+
+      // temporary solution to upload data and reload page
+      window.location.reload(false);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   };
-
-  /**
-  const handleSubmit = event => {
-    event.preventDefault();
-
-    try {
-      const docRef = addDoc(collection(db, "testing"), {
-        text: "texttesting"
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-
-    
-  };
-  */
-
-  /**
-  var btnTypes = [
-    "btn btn-primary",
-    "btn btn-secondary",
-    "btn btn-success",
-    "btn btn-danger",
-  ];
-  var dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
-  const [color, setColor] = useState("btn btn-primary");
-  const [date, setDate] = useState("22.02.2022");
-  */
 
   if (counter >= 5) {
-    //localStorage.removeItem("progress");
-    //localStorage.removeItem("counter");
     return (
       <div className="container">
         <div className="p-5 my-4 bg-light rounded-3">
@@ -107,15 +61,17 @@ export default function Study() {
         </div>
         <div className="p-5 my-4 bg-light rounded-3">
           <h1>Studie zur Eingabe von Geburtsdaten</h1>
-          <form //onSubmit={handleSubmit}
-          >
+          <form onSubmit={handleSubmit}>
             <p>Datum</p>
             <div className="row align-items-center g-3">
               <div className="col-auto">
-                <input type="text" id="testText" className="form-control" />
-                <label className="form-label" htmlFor="typeText">
-                  Testtext
-                </label>
+                <input
+                  type="text"
+                  className="form-control mb-2"
+                  placeholder="Firebase Test"
+                  value={inputText}
+                  onChange={(e) => setInputText(e.target.value)}
+                />
               </div>
               <div className="col-auto">
                 <button
@@ -131,20 +87,6 @@ export default function Study() {
               </div>
             </div>
           </form>
-        </div>
-
-        <div>
-          <input
-            type="text"
-            placeholder="Firebase Test"
-            onChange={(e) => setTodo(e.target.value)}
-          />
-        </div>
-
-        <div className="btn-container">
-          <button type="submit" className="btn" onClick={addTodo}>
-            Submit
-          </button>
         </div>
       </div>
     );
