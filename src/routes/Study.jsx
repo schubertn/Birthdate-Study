@@ -1,5 +1,14 @@
 //import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import {
+  collection,
+  addDoc,
+} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+import { db } from "../firebase";
+
+//import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+//import {db} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 
 /**
 function setTestValues() {
@@ -19,6 +28,38 @@ export default function Study() {
   var progress = parseInt(localStorage.getItem("progress")) || 20;
   progress = progress + 10;
   var counter = parseInt(localStorage.getItem("counter")) || 0;
+
+  const [todo, setTodo] = useState("");
+
+  const addTodo = async (e) => {
+    e.preventDefault();
+
+    try {
+      const docRef = await addDoc(collection(db, "todos"), {
+        todo: todo,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
+  /**
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    try {
+      const docRef = addDoc(collection(db, "testing"), {
+        text: "texttesting"
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+
+    
+  };
+  */
 
   /**
   var btnTypes = [
@@ -66,17 +107,19 @@ export default function Study() {
         </div>
         <div className="p-5 my-4 bg-light rounded-3">
           <h1>Studie zur Eingabe von Geburtsdaten</h1>
-          <form>
+          <form //onSubmit={handleSubmit}
+          >
             <p>Datum</p>
             <div className="row align-items-center g-3">
               <div className="col-auto">
-                <input type="text" id="typeText" className="form-control" />
+                <input type="text" id="testText" className="form-control" />
                 <label className="form-label" htmlFor="typeText">
                   Testtext
                 </label>
               </div>
               <div className="col-auto">
                 <button
+                  type="submit"
                   className="btn btn-custom"
                   onClick={() => {
                     localStorage.setItem("progress", progress.toString());
@@ -88,6 +131,20 @@ export default function Study() {
               </div>
             </div>
           </form>
+        </div>
+
+        <div>
+          <input
+            type="text"
+            placeholder="Firebase Test"
+            onChange={(e) => setTodo(e.target.value)}
+          />
+        </div>
+
+        <div className="btn-container">
+          <button type="submit" className="btn" onClick={addTodo}>
+            Submit
+          </button>
         </div>
       </div>
     );
