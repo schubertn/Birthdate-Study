@@ -5,20 +5,31 @@ import {
   addDoc,
 } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 import { db } from "../firebase";
+import InputVersionOne from "../components/InputVersionOne";
 
 export default function Study() {
   var progress = parseInt(localStorage.getItem("progress")) || 20;
   progress = progress + 10;
   var counter = parseInt(localStorage.getItem("counter")) || 0;
 
-  const [inputText, setInputText] = useState("");
+  const [inputDate, setInputDate] = useState("");
+  const onInputDate = (date) => {
+    setInputDate(date);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let dbText = "testText";
+
+    if (inputDate == "1") {
+      dbText = "richtiges Datum";
+    } else {
+      dbText = "falsches Datum";
+    }
 
     try {
-      const docRef = await addDoc(collection(db, "testing"), {
-        text: inputText,
+      const docRef = await addDoc(collection(db, "brandnewTest"), {
+        text: dbText,
       });
       console.log("Document written with ID: ", docRef.id);
 
@@ -62,17 +73,9 @@ export default function Study() {
         <div className="p-5 my-4 bg-light rounded-3">
           <h1>Studie zur Eingabe von Geburtsdaten</h1>
           <form onSubmit={handleSubmit}>
-            <p>Datum</p>
+            <p>Datum: 1</p>
             <div className="row align-items-center g-3">
-              <div className="col-auto">
-                <input
-                  type="text"
-                  className="form-control mb-2"
-                  placeholder="Firebase Test"
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
-                />
-              </div>
+              <InputVersionOne onInputDate={onInputDate} />
               <div className="col-auto">
                 <button
                   type="submit"
