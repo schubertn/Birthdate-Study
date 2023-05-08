@@ -1,42 +1,53 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import {
-  collection,
-  addDoc,
-} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
-import { db } from "../firebase";
+import { updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+import { testDocRef } from "../firebase";
 import InputVersionOne from "../components/InputVersionOne";
+import InputVersionTwo from "../components/InputVersionTwo";
 
 export default function Study() {
   var progress = parseInt(localStorage.getItem("progress")) || 20;
   progress = progress + 10;
   var counter = parseInt(localStorage.getItem("counter")) || 0;
 
-  const [inputDate, setInputDate] = useState("");
+  const [renderOne, setRenderOne] = useState(true);
+  const [renderTwo, setRenderTwo] = useState(false);
+
+  const [inputDate, setInputDate] = useState(1);
   const onInputDate = (date) => {
     setInputDate(date);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let dbText = "testText";
+
+    let dbCorrect = false;
 
     if (inputDate == "1") {
-      dbText = "richtiges Datum";
-    } else {
-      dbText = "falsches Datum";
+      dbCorrect = true;
     }
 
+    // upload is currently too slow
     try {
-      const docRef = await addDoc(collection(db, "brandnewTest"), {
-        text: dbText,
+      await updateDoc(testDocRef, {
+        testing: "testtest",
+        "input1.input": inputDate,
+        "input1.correct": dbCorrect,
       });
-      console.log("Document written with ID: ", docRef.id);
+      console.log("Document written with ID: ", testDocRef.id);
 
       // temporary solution to upload data and reload page
-      window.location.reload(false);
+      //window.location.reload(false);
     } catch (e) {
       console.error("Error adding document: ", e);
+    }
+
+    if (renderOne == true) {
+      setRenderOne(false);
+      setRenderTwo(true);
+    } else {
+      setRenderOne(true);
+      setRenderTwo(false);
     }
   };
 
@@ -72,24 +83,24 @@ export default function Study() {
         </div>
         <div className="p-5 my-4 bg-light rounded-3">
           <h1>Studie zur Eingabe von Geburtsdaten</h1>
-          <form onSubmit={handleSubmit}>
-            <p>Datum: 1</p>
-            <div className="row align-items-center g-3">
-              <InputVersionOne onInputDate={onInputDate} />
-              <div className="col-auto">
-                <button
-                  type="submit"
-                  className="btn btn-custom"
-                  onClick={() => {
-                    localStorage.setItem("progress", progress.toString());
-                    localStorage.setItem("counter", counter.toString());
-                  }}
-                >
-                  Testbutton
-                </button>
-              </div>
+
+          <p>Datum: 1</p>
+          <div className="row align-items-center g-3">
+            {renderOne && <InputVersionOne onInputDate={onInputDate} />}
+            {renderTwo && <InputVersionTwo onInputDate={onInputDate} />}
+            <div className="col-auto">
+              <button
+                className="btn btn-custom"
+                onClick={(e) => {
+                  localStorage.setItem("progress", progress.toString());
+                  localStorage.setItem("counter", counter.toString());
+                  handleSubmit(e);
+                }}
+              >
+                Testbutton
+              </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     );
