@@ -35,9 +35,6 @@ export default function Study() {
         "input1.correct": dbCorrect,
       });
       console.log("Document written with ID: ", testDocRef.id);
-
-      // temporary solution to upload data and reload page
-      //window.location.reload(false);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -83,8 +80,7 @@ export default function Study() {
         </div>
         <div className="p-5 my-4 bg-light rounded-3">
           <h1>Studie zur Eingabe von Geburtsdaten</h1>
-
-          <p>Datum: 1</p>
+          <p>Datum: 11.01.1011</p>
           <div className="row align-items-center g-3">
             {renderOne && <InputVersionOne onInputDate={onInputDate} />}
             {renderTwo && <InputVersionTwo onInputDate={onInputDate} />}
