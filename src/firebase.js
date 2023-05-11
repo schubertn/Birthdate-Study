@@ -18,7 +18,7 @@ const app = initializeApp(firebaseConfig);
 // Export firestore database
 // It will be imported into your react app whenever it is needed
 export const db = getFirestore(app);
-export const testDocRef = doc(db, "mondayTest2", "test1");
+export const testDocRef = doc(db, "thursdayTest", "test1");
 
 await setDoc(testDocRef, {
   testing: "test",
