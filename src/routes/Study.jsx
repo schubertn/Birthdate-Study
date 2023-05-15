@@ -4,17 +4,58 @@ import { updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-fi
 import { testDocRef } from "../firebase";
 import DateInput from "../components/DateInput";
 
-const inputVariants = ["calender", "textbox", "dropdown"];
+const inputMethods = ["calender", "textbox", "dropdown"];
 const dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
 
 export default function Study() {
   // TODO: progress could maybe be calculated using counter
   var progress = parseInt(localStorage.getItem("progress")) || 20;
   progress = progress + 10;
-  var counter = parseInt(localStorage.getItem("counter")) || 0;
+  //var counter = parseInt(localStorage.getItem("counter")) || 0;
+  const [counter, setCounter] = useState(0);
 
-  const [inputVersion, setInputVersion] = useState(randomizeInputVersion());
-  const [date, setDate] = useState(randomizeDate());
+  // create a shuffled array of all combinations of dates and input methods
+  const createShuffledArray = () => {
+    let newArray = createCombinationsArray();
+    shuffleArray(newArray);
+    return newArray;
+  };
+
+  // create an array with all combinations of dates and input methods
+  const createCombinationsArray = () => {
+    const combArray = [];
+    for (let i = 0; i < dates.length; i++) {
+      for (let j = 0; j < inputMethods.length; j++) {
+        let arrayObject = {
+          date: dates[i],
+          inputMethod: inputMethods[j],
+        };
+        combArray.push(arrayObject);
+      }
+    }
+    return combArray;
+  };
+
+  // shuffle an array using the Fisher-Yates algorithm
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  };
+
+  // array with all combinations of dates and input methods that have not been used yet
+  var unusedCombinations =
+    JSON.parse(window.localStorage.getItem("unusedCombinations")) ||
+    createShuffledArray();
+
+  // store the array
+  window.localStorage.setItem(
+    "unusedCombinations",
+    JSON.stringify(unusedCombinations)
+  );
 
   const [inputDate, setInputDate] = useState("");
   const onInputDate = (date) => {
@@ -24,41 +65,41 @@ export default function Study() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // TODO: test for correctness of input
     let dbCorrect = false;
     if (inputDate == "1") {
       dbCorrect = true;
     }
 
-    setInputVersion(randomizeInputVersion());
-    setDate(randomizeDate());
+    let date = unusedCombinations[0].date;
+    let input = unusedCombinations[0].inputMethod;
+    // remove the first combination and store the updated array
+    unusedCombinations.shift();
+    window.localStorage.setItem(
+      "unusedCombinations",
+      JSON.stringify(unusedCombinations)
+    );
 
     try {
       await updateDoc(testDocRef, {
         testing: "testtest",
         "input1.input": inputDate,
         "input1.correct": dbCorrect,
+        "input1.usedDate": date,
+        "input1.usedInput": input,
       });
       console.log("Document written with ID: ", testDocRef.id);
       console.log("Date: ", date);
-      console.log("InputVersion: ", inputVersion);
+      console.log("InputMethod: ", input);
       console.log("Counter", counter);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   };
 
-  function randomizeInputVersion() {
-    let randomInputVersion =
-      inputVariants[Math.floor(Math.random() * inputVariants.length)];
-    return randomInputVersion;
-  }
-
-  function randomizeDate() {
-    let randomDate = dates[Math.floor(Math.random() * dates.length)];
-    return randomDate;
-  }
-
-  if (counter >= 5) {
+  // show all 9 possible combinations of the 3 dates and 3 input methods
+  // afterwards go to next screen
+  if (counter >= 9) {
     return (
       <div className="container">
         <div className="p-5 my-4 bg-light rounded-3">
@@ -75,7 +116,6 @@ export default function Study() {
       </div>
     );
   } else {
-    counter = counter + 1;
     return (
       <div className="container">
         <div className="m-4">
@@ -94,8 +134,8 @@ export default function Study() {
           <div className="row align-items-center g-3">
             <DateInput
               key={counter} //used to reset state (so that textfield is cleared every time)
-              inputVersion={inputVersion}
-              date={date}
+              inputMethod={unusedCombinations[0].inputMethod}
+              date={unusedCombinations[0].date}
               onInputDate={onInputDate}
             />
 
@@ -103,6 +143,7 @@ export default function Study() {
               <button
                 className="btn btn-custom"
                 onClick={(e) => {
+                  setCounter(counter + 1);
                   localStorage.setItem("progress", progress.toString());
                   localStorage.setItem("counter", counter.toString());
                   handleSubmit(e);

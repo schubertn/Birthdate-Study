@@ -25,6 +25,8 @@ await setDoc(testDocRef, {
   input1: {
     time: Date(),
     input: null,
-    correct: false
+    correct: false,
+    usedDate: null,
+    usedInput: null,
   }
 });

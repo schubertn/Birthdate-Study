@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 
 // added to avoid ''onChangeText' is missing in props validation' warning
 DateInput.propTypes = {
-  inputVersion: PropTypes.string,
+  inputMethod: PropTypes.string,
   onInputDate: PropTypes.func,
   date: PropTypes.string,
 };
 
 export default function DateInput(props) {
-  if (props.inputVersion == "calender") {
+  if (props.inputMethod == "calender") {
     return (
       <div className="col-auto">
         <p>Datum: {props.date}</p>
@@ -21,7 +21,7 @@ export default function DateInput(props) {
         />
       </div>
     );
-  } else if (props.inputVersion == "textbox") {
+  } else if (props.inputMethod == "textbox") {
     return (
       <div className="col-auto">
         <p>Datum: {props.date}</p>
@@ -34,7 +34,7 @@ export default function DateInput(props) {
         />
       </div>
     );
-  } else if (props.inputVersion == "dropdown") {
+  } else if (props.inputMethod == "dropdown") {
     return (
       <div className="col-auto">
         <p>Datum: {props.date}</p>
