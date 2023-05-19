@@ -1,6 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  collection,
+} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,3 +22,58 @@ const app = initializeApp(firebaseConfig);
 // export firestore database
 // it will be imported into your react app whenever it is needed
 export const db = getFirestore(app);
+
+// for each user we create a new document with a random id, so the data is anonymous
+export const docRef = doc(collection(db, "study"));
+await setDoc(docRef, {
+  // input method calender with date 11.01.1011
+  calender0: {
+    time: Date(),
+    input: null,
+    correct: false,
+  },
+  // input method calender with date 22.02.2022
+  calender1: {
+    time: Date(),
+    input: null,
+    correct: false,
+  },
+  calender2: {
+    time: Date(),
+    input: null,
+    correct: false,
+  },
+  dropdown0: {
+    time: Date(),
+    input: null,
+    correct: false,
+  },
+  dropdown1: {
+    time: Date(),
+    input: null,
+    correct: false,
+  },
+  dropdown2: {
+    time: Date(),
+    input: null,
+    correct: false,
+  },
+  textbox0: {
+    time: Date(),
+    input: null,
+    correct: false,
+  },
+  textbox1: {
+    time: Date(),
+    input: null,
+    correct: false,
+  },
+  textbox2: {
+    time: Date(),
+    input: null,
+    correct: false,
+  },
+  age: null,
+  gender: "",
+  // more to come
+});

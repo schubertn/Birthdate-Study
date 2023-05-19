@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import {
-  setDoc,
-  doc,
-} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
-import { db } from "../firebase";
+import { updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+import { docRef } from "../firebase";
 import DateInput from "../components/DateInput";
 
 const inputMethods = ["calender", "dropdown", "textbox"];
@@ -87,16 +84,11 @@ export default function Study() {
     const inputName = input + dates.indexOf(date);
 
     try {
-      await setDoc(doc(db, "user2", inputName), {
-        inputMethod: input,
-        inputDate: date,
-        userInput: inputDate,
-        correct: dbCorrect,
+      await updateDoc(docRef, {
+        [`${inputName}.input`]: inputDate,
+        [`${inputName}.correct`]: dbCorrect,
       });
-      console.log("Document written with ID: ", inputName);
-      // alternative: auto-generated ID instead of inputName as ID
-      // const docRef = await addDoc(collection(db, "user2"), {...}
-      // console.log("Document written with ID: ", docRef.id);
+      console.log("Document written with ID: ", docRef.id);
 
       console.log("Date: ", date);
       console.log("InputMethod: ", input);
