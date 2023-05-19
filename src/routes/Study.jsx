@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
-import { testDocRef } from "../firebase";
+import {
+  setDoc,
+  doc,
+} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+import { db } from "../firebase";
 import DateInput from "../components/DateInput";
 
-const inputMethods = ["calender", "textbox", "dropdown"];
+const inputMethods = ["calender", "dropdown", "textbox"];
 const dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
 
 export default function Study() {
@@ -80,15 +83,21 @@ export default function Study() {
       JSON.stringify(unusedCombinations)
     );
 
+    // input name for db
+    const inputName = input + dates.indexOf(date);
+
     try {
-      await updateDoc(testDocRef, {
-        testing: "testtest",
-        "input1.input": inputDate,
-        "input1.correct": dbCorrect,
-        "input1.usedDate": date,
-        "input1.usedInput": input,
+      await setDoc(doc(db, "user2", inputName), {
+        inputMethod: input,
+        inputDate: date,
+        userInput: inputDate,
+        correct: dbCorrect,
       });
-      console.log("Document written with ID: ", testDocRef.id);
+      console.log("Document written with ID: ", inputName);
+      // alternative: auto-generated ID instead of inputName as ID
+      // const docRef = await addDoc(collection(db, "user2"), {...}
+      // console.log("Document written with ID: ", docRef.id);
+
       console.log("Date: ", date);
       console.log("InputMethod: ", input);
       console.log("Counter", counter);
