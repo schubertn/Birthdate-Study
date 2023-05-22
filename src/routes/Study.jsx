@@ -9,10 +9,11 @@ const dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
 
 export default function Study() {
   // TODO: progress could maybe be calculated using counter
-  var progress = parseInt(sessionStorage.getItem("progress")) || 20;
-  progress = progress + 10;
+  //var progress = parseInt(sessionStorage.getItem("progress")) || 20;
+  //progress = progress + 10;
   //var counter = parseInt(sessionStorage.getItem("counter")) || 0;
   const [counter, setCounter] = useState(0);
+  var progress = counter * 10 + 30;
 
   // get the time only once when the page is first loaded
   if (!sessionStorage.getItem("startTime")) {
