@@ -26,6 +26,7 @@ export const db = getFirestore(app);
 // for each user we create a new document with a random id, so the data is anonymous
 export const docRef = doc(collection(db, "study"));
 await setDoc(docRef, {
+  timestamp: Date(), 
   // input method calender with date 11.01.1011
   calender0: {
     time: null,
