@@ -9,19 +9,18 @@ const dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
 
 export default function Study() {
   // TODO: progress could maybe be calculated using counter
-  var progress = parseInt(localStorage.getItem("progress")) || 20;
+  var progress = parseInt(sessionStorage.getItem("progress")) || 20;
   progress = progress + 10;
-  //var counter = parseInt(localStorage.getItem("counter")) || 0;
+  //var counter = parseInt(sessionStorage.getItem("counter")) || 0;
   const [counter, setCounter] = useState(0);
 
   // get the time only once when the page is first loaded
-  if (!localStorage.getItem("startTime")) {
-    localStorage.setItem("startTime", performance.now().toString());
+  if (!sessionStorage.getItem("startTime")) {
+    sessionStorage.setItem("startTime", performance.now().toString());
   }
 
   // create a shuffled array of all combinations of dates and input methods
   const createShuffledArray = () => {
-    console.log("performance in shufflearray: ", performance.now());
     let newArray = createCombinationsArray();
     shuffleArray(newArray);
     return newArray;
@@ -54,11 +53,11 @@ export default function Study() {
 
   // array with all combinations of dates and input methods that have not been used yet
   var unusedCombinations =
-    JSON.parse(window.localStorage.getItem("unusedCombinations")) ||
+    JSON.parse(window.sessionStorage.getItem("unusedCombinations")) ||
     createShuffledArray();
 
   // store the array
-  window.localStorage.setItem(
+  window.sessionStorage.setItem(
     "unusedCombinations",
     JSON.stringify(unusedCombinations)
   );
@@ -69,15 +68,15 @@ export default function Study() {
   };
 
   const calculateElapsedTime = () => {
-    const startTime = parseFloat(localStorage.getItem("startTime")) / 1000.0;
-    const endTime = parseFloat(localStorage.getItem("endTime")) / 1000.0;
+    const startTime = parseFloat(sessionStorage.getItem("startTime")) / 1000.0;
+    const endTime = parseFloat(sessionStorage.getItem("endTime")) / 1000.0;
     console.log("startTime is: ", startTime);
     console.log("endTime is: ", endTime);
     var timeNeeded = endTime - startTime;
     console.log("calculatedTime before is: ", timeNeeded);
     timeNeeded = Math.round( timeNeeded * 1e2 ) / 1e2; //round to two decimal places
     console.log("calculatedTime after is: ", timeNeeded);
-    localStorage.removeItem("startTime");
+    sessionStorage.removeItem("startTime");
     return timeNeeded;
   };
 
@@ -88,7 +87,7 @@ export default function Study() {
     let input = unusedCombinations[0].inputMethod;
     // remove the first combination and store the updated array
     unusedCombinations.shift();
-    window.localStorage.setItem(
+    window.sessionStorage.setItem(
       "unusedCombinations",
       JSON.stringify(unusedCombinations)
     );
@@ -160,10 +159,10 @@ export default function Study() {
               <button
                 className="btn btn-custom"
                 onClick={(e) => {
-                  localStorage.setItem("endTime", performance.now().toString());
+                  sessionStorage.setItem("endTime", performance.now().toString());
                   setCounter(counter + 1);
-                  localStorage.setItem("progress", progress.toString());
-                  localStorage.setItem("counter", counter.toString());
+                  sessionStorage.setItem("progress", progress.toString());
+                  sessionStorage.setItem("counter", counter.toString());
                   handleSubmit(e);
                 }}
               >
