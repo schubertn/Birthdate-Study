@@ -84,12 +84,6 @@ export default function Study() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // TODO: test for correctness of input
-    let dbCorrect = false;
-    if (inputDate == "1") {
-      dbCorrect = true;
-    }
-
     let date = unusedCombinations[0].date;
     let input = unusedCombinations[0].inputMethod;
     // remove the first combination and store the updated array
@@ -101,18 +95,20 @@ export default function Study() {
 
     // input name for db
     const inputName = input + dates.indexOf(date);
+    // bool for correctness of input
+    const correctInput = inputDate == date;
 
     try {
       await updateDoc(docRef, {
         [`${inputName}.time`]: calculateElapsedTime(),
         [`${inputName}.input`]: inputDate,
-        [`${inputName}.correct`]: dbCorrect,
+        [`${inputName}.correct`]: correctInput,
       });
       console.log("Document written with ID: ", docRef.id);
-
       console.log("Date: ", date);
       console.log("InputMethod: ", input);
       console.log("Counter", counter);
+      console.log("Correctness: ", correctInput)
     } catch (e) {
       console.error("Error adding document: ", e);
     }
