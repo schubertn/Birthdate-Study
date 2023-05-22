@@ -4,15 +4,17 @@ import { updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-fi
 import { docRef } from "../firebase";
 import DateInput from "../components/DateInput";
 
+// array of all possible input methods
 const inputMethods = ["calender", "dropdown", "textbox"];
+// array of all possible dates
 const dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
 
 export default function Study() {
-  // TODO: progress could maybe be calculated using counter
-  //var progress = parseInt(sessionStorage.getItem("progress")) || 20;
-  //progress = progress + 10;
-  //var counter = parseInt(sessionStorage.getItem("counter")) || 0;
+  // counter for number of iterations of the study (currently there are 9)
   const [counter, setCounter] = useState(0);
+
+  // value for the progressbar
+  // TODO: change depending on final number of iterations
   var progress = counter * 10 + 30;
 
   // get the time only once when the page is first loaded
@@ -63,52 +65,54 @@ export default function Study() {
     JSON.stringify(unusedCombinations)
   );
 
+  // the date the user will enter
   const [inputDate, setInputDate] = useState("");
   const onInputDate = (date) => {
     setInputDate(date);
   };
 
+  // calculate the time the user needs until button is pressed
   const calculateElapsedTime = () => {
     const startTime = parseFloat(sessionStorage.getItem("startTime")) / 1000.0;
     const endTime = parseFloat(sessionStorage.getItem("endTime")) / 1000.0;
-    console.log("startTime is: ", startTime);
-    console.log("endTime is: ", endTime);
     var timeNeeded = endTime - startTime;
-    console.log("calculatedTime before is: ", timeNeeded);
-    timeNeeded = Math.round( timeNeeded * 1e2 ) / 1e2; //round to two decimal places
-    console.log("calculatedTime after is: ", timeNeeded);
-    sessionStorage.removeItem("startTime");
+    timeNeeded = Math.round(timeNeeded * 1e2) / 1e2; // round to two decimal places
+    sessionStorage.removeItem("startTime"); // remove this value for the next iteration
     return timeNeeded;
   };
 
+  // called when the user presses the submit button
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // the displayed date and the used input method in this iteration
     let date = unusedCombinations[0].date;
     let input = unusedCombinations[0].inputMethod;
-    // remove the first combination and store the updated array
+
+    // remove the used combination (which is the first on in the array) and store the updated array
     unusedCombinations.shift();
     window.sessionStorage.setItem(
       "unusedCombinations",
       JSON.stringify(unusedCombinations)
     );
 
-    // input name for db
-    const inputName = input + dates.indexOf(date);
-    // bool for correctness of input
-    const correctInput = inputDate == date;
+    // bool for correctness of user input
+    const isInputCorrect = inputDate == date;
+
+    // needed for storing the results in firestore
+    const firestoreFieldName = input + dates.indexOf(date);
 
     try {
       await updateDoc(docRef, {
-        [`${inputName}.time`]: calculateElapsedTime(),
-        [`${inputName}.input`]: inputDate,
-        [`${inputName}.correct`]: correctInput,
+        [`${firestoreFieldName}.time`]: calculateElapsedTime(),
+        [`${firestoreFieldName}.input`]: inputDate,
+        [`${firestoreFieldName}.correct`]: isInputCorrect,
       });
       console.log("Document written with ID: ", docRef.id);
       console.log("Date: ", date);
       console.log("InputMethod: ", input);
+      console.log("Correctness: ", isInputCorrect);
       console.log("Counter", counter);
-      console.log("Correctness: ", correctInput)
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -150,7 +154,7 @@ export default function Study() {
 
           <div className="row align-items-center g-3">
             <DateInput
-              key={counter} //used to reset state (so that textfield is cleared every time)
+              key={counter} // used to reset state (so that textfield is cleared every time)
               inputMethod={unusedCombinations[0].inputMethod}
               date={unusedCombinations[0].date}
               onInputDate={onInputDate}
@@ -160,7 +164,10 @@ export default function Study() {
               <button
                 className="btn btn-custom"
                 onClick={(e) => {
-                  sessionStorage.setItem("endTime", performance.now().toString());
+                  sessionStorage.setItem(
+                    "endTime",
+                    performance.now().toString()
+                  );
                   setCounter(counter + 1);
                   sessionStorage.setItem("progress", progress.toString());
                   sessionStorage.setItem("counter", counter.toString());
