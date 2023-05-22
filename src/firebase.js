@@ -28,48 +28,48 @@ export const docRef = doc(collection(db, "study"));
 await setDoc(docRef, {
   // input method calender with date 11.01.1011
   calender0: {
-    time: Date(),
+    time: null,
     input: null,
     correct: false,
   },
   // input method calender with date 22.02.2022
   calender1: {
-    time: Date(),
+    time: null,
     input: null,
     correct: false,
   },
   calender2: {
-    time: Date(),
+    time: null,
     input: null,
     correct: false,
   },
   dropdown0: {
-    time: Date(),
+    time: null,
     input: null,
     correct: false,
   },
   dropdown1: {
-    time: Date(),
+    time: null,
     input: null,
     correct: false,
   },
   dropdown2: {
-    time: Date(),
+    time: null,
     input: null,
     correct: false,
   },
   textbox0: {
-    time: Date(),
+    time: null,
     input: null,
     correct: false,
   },
   textbox1: {
-    time: Date(),
+    time: null,
     input: null,
     correct: false,
   },
   textbox2: {
-    time: Date(),
+    time: null,
     input: null,
     correct: false,
   },

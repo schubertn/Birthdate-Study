@@ -14,8 +14,14 @@ export default function Study() {
   //var counter = parseInt(localStorage.getItem("counter")) || 0;
   const [counter, setCounter] = useState(0);
 
+  // get the time only once when the page is first loaded
+  if (!localStorage.getItem("startTime")) {
+    localStorage.setItem("startTime", performance.now().toString());
+  }
+
   // create a shuffled array of all combinations of dates and input methods
   const createShuffledArray = () => {
+    console.log("performance in shufflearray: ", performance.now());
     let newArray = createCombinationsArray();
     shuffleArray(newArray);
     return newArray;
@@ -62,6 +68,19 @@ export default function Study() {
     setInputDate(date);
   };
 
+  const calculateElapsedTime = () => {
+    const startTime = parseFloat(localStorage.getItem("startTime")) / 1000.0;
+    const endTime = parseFloat(localStorage.getItem("endTime")) / 1000.0;
+    console.log("startTime is: ", startTime);
+    console.log("endTime is: ", endTime);
+    var timeNeeded = endTime - startTime;
+    console.log("calculatedTime before is: ", timeNeeded);
+    timeNeeded = Math.round( timeNeeded * 1e2 ) / 1e2; //round to two decimal places
+    console.log("calculatedTime after is: ", timeNeeded);
+    localStorage.removeItem("startTime");
+    return timeNeeded;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -85,6 +104,7 @@ export default function Study() {
 
     try {
       await updateDoc(docRef, {
+        [`${inputName}.time`]: calculateElapsedTime(),
         [`${inputName}.input`]: inputDate,
         [`${inputName}.correct`]: dbCorrect,
       });
@@ -144,6 +164,7 @@ export default function Study() {
               <button
                 className="btn btn-custom"
                 onClick={(e) => {
+                  localStorage.setItem("endTime", performance.now().toString());
                   setCounter(counter + 1);
                   localStorage.setItem("progress", progress.toString());
                   localStorage.setItem("counter", counter.toString());
