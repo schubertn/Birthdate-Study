@@ -8,7 +8,6 @@ DateInput.propTypes = {
 };
 
 export default function DateInput(props) {
-
   // create an array of all days
   const createDayArray = () => {
     var dayArray = [];
@@ -105,32 +104,38 @@ export default function DateInput(props) {
     );
   } else if (props.inputMethod == "dropdown") {
     return (
-      <div className="col-auto">
+      <div className="row align-items-center g-3">
         <p>Datum: {props.date}</p>
-        <select onChange={handleDayChange}>
-          <option value="Tag">Tag</option>
-          {days.map((day) => (
-            <option key={day} value={day}>
-              {day}
-            </option>
-          ))}
-        </select>
-        <select onChange={handleMonthChange}>
-          <option value="Monat">Monat</option>
-          {months.map((month) => (
-            <option key={month.value} value={month.value}>
-              {month.label}
-            </option>
-          ))}
-        </select>
-        <select onChange={handleYearChange}>
-          <option value="Jahr">Jahr</option>
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
+        <div className="col-auto">
+          <select className="form-select" onChange={handleDayChange}>
+            <option value="Tag">Tag</option>
+            {days.map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="col-auto">
+          <select className="form-select" onChange={handleMonthChange}>
+            <option value="Monat">Monat</option>
+            {months.map((month) => (
+              <option key={month.value} value={month.value}>
+                {month.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="col-auto">
+          <select className="form-select" onChange={handleYearChange}>
+            <option value="Jahr">Jahr</option>
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     );
   } else {
