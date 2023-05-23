@@ -109,6 +109,7 @@ export default function Study() {
         [`${firestoreFieldName}.correct`]: isInputCorrect,
       });
       console.log("Document written with ID: ", docRef.id);
+      console.log("User input: ", inputDate);
       console.log("Date: ", date);
       console.log("InputMethod: ", input);
       console.log("Correctness: ", isInputCorrect);
