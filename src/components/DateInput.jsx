@@ -24,7 +24,7 @@ export default function DateInput(props) {
   // create an array of all years
   const createYearArray = () => {
     var yearArray = [];
-    // TODO: use correct start date and current date using Date()
+    // TODO: use correct start date and current date using Date() [also for calendar input]
     for (var i = 1950; i < 2024; i++) {
       yearArray.push(i.toString());
     }
@@ -76,17 +76,25 @@ export default function DateInput(props) {
     props.onInputDate(dateString);
   };
 
-  if (props.inputMethod == "calender") {
+  // change the format of the date from YYYY-MM-DD to DD-MM-YYYY
+  const handleCalendarInput = (e) => {
+    const stringArray = e.target.value.split("-");
+    const formattedDate = stringArray.reverse().join(".");
+    props.onInputDate(formattedDate);
+  }
+
+  if (props.inputMethod == "calendar") {
     return (
       <div className="col-auto">
         <p>Datum: {props.date}</p>
         <input
-          type="text"
-          placeholder="Calender Input"
-          onChange={(e) => {
-            props.onInputDate(e.target.value);
-          }}
-        />
+          type="date"
+          className="form-control"
+          id="calendar"
+          name="calendar"
+          min="1950-01-01" max="2023-12-31"
+          onChange={handleCalendarInput}
+        ></input>
       </div>
     );
   } else if (props.inputMethod == "textbox") {

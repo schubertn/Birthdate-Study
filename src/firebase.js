@@ -27,19 +27,19 @@ export const docRef = doc(collection(db, "study"));
 
 await setDoc(docRef, {
   timestamp: Date(),
-  // input method calender with date 11.01.1011
-  calender0: {
+  // input method calendar with date 11.01.1011
+  calendar0: {
     time: null,
     input: null,
     correct: false,
   },
-  // input method calender with date 22.02.2022
-  calender1: {
+  // input method calendar with date 22.02.2022
+  calendar1: {
     time: null,
     input: null,
     correct: false,
   },
-  calender2: {
+  calendar2: {
     time: null,
     input: null,
     correct: false,

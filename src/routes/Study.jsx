@@ -5,7 +5,7 @@ import { docRef } from "../firebase";
 import DateInput from "../components/DateInput";
 
 // array of all possible input methods
-const inputMethods = ["calender", "dropdown", "textbox"];
+const inputMethods = ["calendar", "dropdown", "textbox"];
 // array of all possible dates
 const dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
 
