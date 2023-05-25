@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useState } from "react";
 import { updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 import { docRef } from "../firebase";
@@ -9,10 +9,10 @@ const inputMethods = ["calendar", "dropdown", "oneTextbox", "splitTextbox"];
 // array of all possible dates
 const dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
 
-export default function Study() {
-
+export default function StudyPartOne() {
   // bool to disable the button as long as there is no input
-  const [disabled, setDisabled] = useState(true);
+  // TODO: set to true once testing is done
+  const [disabled, setDisabled] = useState(false);
 
   // counter for number of iterations of the study (currently there are 9)
   const [counter, setCounter] = useState(0);
@@ -128,21 +128,7 @@ export default function Study() {
   // show all 12 possible combinations of the 3 dates and 4 input methods
   // afterwards go to next screen
   if (counter >= 12) {
-    return (
-      <div className="container">
-        <div className="p-5 my-4 bg-light rounded-3">
-          <h1>Studie zur Eingabe von Geburtsdaten</h1>
-          <p>
-            Der erste Teil der Studie ist beendet. Jetzt kommen noch Fragen.
-            Diese Seite ist nur vorübergehend hier. Später sollen an dieser
-            Stelle einfach nur die Daten der Studie gespeichert werden.
-          </p>
-          <Link to="/Demographics" className="btn btn-custom" role="button">
-            Weiter zu den Fragen
-          </Link>
-        </div>
-      </div>
-    );
+    return <Navigate to="/StudyPartTwo" />;
   } else {
     return (
       <div className="container">
@@ -178,7 +164,7 @@ export default function Study() {
                       performance.now().toString()
                     );
                     setCounter(counter + 1);
-                    setDisabled(true);
+                    // TODO: setDisabled(true);
                     sessionStorage.setItem("progress", progress.toString());
                     sessionStorage.setItem("counter", counter.toString());
                     handleSubmit(e);

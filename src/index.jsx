@@ -5,10 +5,10 @@ import Layout from "./routes/Layout";
 import Error from "./routes/Error";
 import Home from "./routes/Home";
 import Instructions from "./routes/Instructions";
-import Study from "./routes/Study";
+import StudyPartOne from "./routes/StudyPartOne";
+import StudyPartTwo from "./routes/StudyPartTwo";
 import Demographics from "./routes/Demographics";
 import End from "./routes/End";
-
 
 const router = createBrowserRouter([
   {
@@ -25,8 +25,12 @@ const router = createBrowserRouter([
         element: <Instructions />,
       },
       {
-        path: "/study",
-        element: <Study />,
+        path: "/studyPartOne",
+        element: <StudyPartOne />,
+      },
+      {
+        path: "/studyPartTwo",
+        element: <StudyPartTwo />,
       },
       {
         path: "/demographics",

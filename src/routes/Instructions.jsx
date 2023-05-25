@@ -16,7 +16,7 @@ const Instructions = () => {
           Hier folgt eine Anleitung zur Durchführung der Studie. Wenn Sie auf{" "}
           <q>Beginnen</q> drücken, dann beginnt die Studie. Juhu!
         </p>
-        <Link to="/Study" className="btn btn-custom" role="button">
+        <Link to="/StudyPartOne" className="btn btn-custom" role="button">
           Beginnen
         </Link>
         <Link to="/" className="btn btn-custom" role="button">
