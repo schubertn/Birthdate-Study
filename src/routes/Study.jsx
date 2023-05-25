@@ -10,6 +10,10 @@ const inputMethods = ["calendar", "dropdown", "oneTextbox", "splitTextbox"];
 const dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
 
 export default function Study() {
+
+  // bool to disable the button as long as there is no input
+  const [disabled, setDisabled] = useState(true);
+
   // counter for number of iterations of the study (currently there are 9)
   const [counter, setCounter] = useState(0);
 
@@ -69,6 +73,8 @@ export default function Study() {
   const [inputDate, setInputDate] = useState("");
   const onInputDate = (date) => {
     setInputDate(date);
+    // allow button to be clicked
+    setDisabled(false);
   };
 
   // calculate the time the user needs until button is pressed
@@ -165,12 +171,14 @@ export default function Study() {
               <div className="col-auto">
                 <button
                   className="btn btn-custom"
+                  disabled={disabled}
                   onClick={(e) => {
                     sessionStorage.setItem(
                       "endTime",
                       performance.now().toString()
                     );
                     setCounter(counter + 1);
+                    setDisabled(true);
                     sessionStorage.setItem("progress", progress.toString());
                     sessionStorage.setItem("counter", counter.toString());
                     handleSubmit(e);
