@@ -59,17 +59,32 @@ await setDoc(docRef, {
     input: null,
     correct: false,
   },
-  textbox0: {
+  oneTextbox0: {
     time: null,
     input: null,
     correct: false,
   },
-  textbox1: {
+  oneTextbox1: {
     time: null,
     input: null,
     correct: false,
   },
-  textbox2: {
+  oneTextbox2: {
+    time: null,
+    input: null,
+    correct: false,
+  },
+  splitTextbox0: {
+    time: null,
+    input: null,
+    correct: false,
+  },
+  splitTextbox1: {
+    time: null,
+    input: null,
+    correct: false,
+  },
+  splitTextbox2: {
     time: null,
     input: null,
     correct: false,

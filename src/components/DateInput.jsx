@@ -81,82 +81,119 @@ export default function DateInput(props) {
     const stringArray = e.target.value.split("-");
     const formattedDate = stringArray.reverse().join(".");
     props.onInputDate(formattedDate);
-  }
+  };
 
   if (props.inputMethod == "calendar") {
     return (
-      <div className="col-auto">
+      <div className="container">
         <p>Datum: {props.date}</p>
-        <input
-          type="date"
-          className="form-control"
-          id="calendar"
-          name="calendar"
-          min="1950-01-01" max="2023-12-31"
-          onChange={handleCalendarInput}
-        ></input>
+        <div className="row align-items-center g-3">
+          <div className="col-auto">
+            <input
+              type="date"
+              className="form-control"
+              id="calendar"
+              name="calendar"
+              min="1950-01-01"
+              max="2023-12-31"
+              onChange={handleCalendarInput}
+            ></input>
+          </div>
+        </div>
       </div>
     );
-  } else if (props.inputMethod == "textbox") {
+  } else if (props.inputMethod == "oneTextbox") {
     return (
-      <div className="col-auto">
+      <div className="container">
         <p>Datum: {props.date}</p>
-        <input
-          type="text"
-          placeholder="Textbox Input"
-          onChange={(e) => {
-            props.onInputDate(e.target.value);
-          }}
-        />
+        <div className="row align-items-center g-3">
+          <div className="col-auto">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="TT.MM.JJJJ"
+              onChange={(e) => {
+                props.onInputDate(e.target.value);
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  } else if (props.inputMethod == "splitTextbox") {
+    return (
+      <div className="container">
+        <p>Datum: {props.date}</p>
+        <div className="row align-items-center g-3">
+          <div className="col-lg-1 col-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="TT"
+              onChange={handleDayChange}
+            />
+          </div>
+          <div className="col-lg-1 col-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="MM"
+              onChange={handleMonthChange}
+            />
+          </div>
+          <div className="col-lg-2 col-6">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="JJJJ"
+              onChange={handleYearChange}
+            />
+          </div>
+        </div>
       </div>
     );
   } else if (props.inputMethod == "dropdown") {
     return (
-      <div className="row align-items-center g-3">
+      <div className="container">
         <p>Datum: {props.date}</p>
-        <div className="col-auto">
-          <select className="form-select" onChange={handleDayChange}>
-            <option value="Tag">Tag</option>
-            {days.map((day) => (
-              <option key={day} value={day}>
-                {day}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="col-auto">
-          <select className="form-select" onChange={handleMonthChange}>
-            <option value="Monat">Monat</option>
-            {months.map((month) => (
-              <option key={month.value} value={month.value}>
-                {month.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="col-auto">
-          <select className="form-select" onChange={handleYearChange}>
-            <option value="Jahr">Jahr</option>
-            {years.map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
+        <div className="row align-items-center g-3">
+          <div className="col-auto">
+            <select className="form-select" onChange={handleDayChange}>
+              <option value="Tag">Tag</option>
+              {days.map((day) => (
+                <option key={day} value={day}>
+                  {day}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="col-auto">
+            <select className="form-select" onChange={handleMonthChange}>
+              <option value="Monat">Monat</option>
+              {months.map((month) => (
+                <option key={month.value} value={month.value}>
+                  {month.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="col-auto">
+            <select className="form-select" onChange={handleYearChange}>
+              <option value="Jahr">Jahr</option>
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
     );
-  } else {
+  } else { // TODO: remove after testing
     return (
-      <div className="col-auto">
-        <p>Datum: {props.date}</p>
-        <input
-          type="text"
-          placeholder="Problem"
-          onChange={(e) => {
-            props.onInputDate(e.target.value);
-          }}
-        />
+      <div className="container">
+        <p>Problem</p>
       </div>
     );
   }

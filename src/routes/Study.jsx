@@ -5,7 +5,7 @@ import { docRef } from "../firebase";
 import DateInput from "../components/DateInput";
 
 // array of all possible input methods
-const inputMethods = ["calendar", "dropdown", "textbox"];
+const inputMethods = ["calendar", "dropdown", "oneTextbox", "splitTextbox"];
 // array of all possible dates
 const dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
 
@@ -119,9 +119,9 @@ export default function Study() {
     }
   };
 
-  // show all 9 possible combinations of the 3 dates and 3 input methods
+  // show all 12 possible combinations of the 3 dates and 4 input methods
   // afterwards go to next screen
-  if (counter >= 9) {
+  if (counter >= 12) {
     return (
       <div className="container">
         <div className="p-5 my-4 bg-light rounded-3">
@@ -155,28 +155,30 @@ export default function Study() {
 
           <div className="row align-items-center g-3">
             <DateInput
-              key={counter} // used to reset state (so that textfield is cleared every time)
+              key={counter} // used to reset state (so that input field is cleared every time)
               inputMethod={unusedCombinations[0].inputMethod}
               date={unusedCombinations[0].date}
               onInputDate={onInputDate}
             />
 
-            <div className="col-auto">
-              <button
-                className="btn btn-custom"
-                onClick={(e) => {
-                  sessionStorage.setItem(
-                    "endTime",
-                    performance.now().toString()
-                  );
-                  setCounter(counter + 1);
-                  sessionStorage.setItem("progress", progress.toString());
-                  sessionStorage.setItem("counter", counter.toString());
-                  handleSubmit(e);
-                }}
-              >
-                Testbutton
-              </button>
+            <div className="row align-items-center g-3">
+              <div className="col-auto">
+                <button
+                  className="btn btn-custom"
+                  onClick={(e) => {
+                    sessionStorage.setItem(
+                      "endTime",
+                      performance.now().toString()
+                    );
+                    setCounter(counter + 1);
+                    sessionStorage.setItem("progress", progress.toString());
+                    sessionStorage.setItem("counter", counter.toString());
+                    handleSubmit(e);
+                  }}
+                >
+                  Testbutton
+                </button>
+              </div>
             </div>
           </div>
         </div>
