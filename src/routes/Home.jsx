@@ -22,6 +22,9 @@ export default function Home() {
         <Link to="/Instructions" className="btn btn-custom" role="button">
           Weiter zur Anleitung
         </Link>
+        <Link to="/StudyPartTwo" className="btn btn-custom" role="button">
+          Testing StudyPartTwo
+        </Link>
       </div>
     </div>
   );
