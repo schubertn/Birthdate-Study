@@ -89,7 +89,18 @@ await setDoc(docRef, {
     input: null,
     correct: false,
   },
-  age: null,
-  gender: "",
-  // more to come
+  // results from part two of the study
+  preferenceFast: {
+    calendar: null,
+    dropdown: null,
+    oneTextbox: null,
+    splitTextbox: null,
+  },
+  preferenceEasy: {
+    calendar: null,
+    dropdown: null,
+    oneTextbox: null,
+    splitTextbox: null,
+  },
+  // TODO: add demographics
 });

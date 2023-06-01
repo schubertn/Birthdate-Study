@@ -53,7 +53,7 @@ export default function DateInput(props) {
   const [month, setMonth] = useState("MM");
   const [year, setYear] = useState("YYYY");
 
-  // the string we will send back to the Study component
+  // the string we will send back to the StudyPartOne component
   var dateString = "";
 
   // update the state of day/month/year whenever a new option is selected from the dropdown
