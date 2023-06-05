@@ -10,8 +10,8 @@ const Instructions = () => {
           </div>
         </div>
       </div>
-      <div className="p-5 my-4 bg-light rounded-3">
-        <h1>Studie zur Eingabe von Geburtsdaten</h1>
+      <div className="p-5 m-4 bg-light rounded-3">
+        <h3>Anleitung</h3>
         <p>
           Hier folgt eine Anleitung zur Durchführung der Studie. Wenn Sie auf{" "}
           <q>Beginnen</q> drücken, dann beginnt die Studie. Juhu!

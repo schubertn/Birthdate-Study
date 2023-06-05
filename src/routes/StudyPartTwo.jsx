@@ -86,17 +86,19 @@ export default function StudyPartTwo() {
           </div>
         </div>
       </div>
-      <div className="p-5 my-4 bg-light rounded-3">
-        <h1>Studie zur Eingabe von Geburtsdaten</h1>
+      <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
+        <h3>Persönliche Einschätzung</h3>
         <p>
           Bitte bewerten Sie die im Folgenden abgebildeten Eingabemethoden auf
-          einer Skala von 1 &#40;trifft überhaupt nicht zu&#41; bis 6
+          einer Skala von 1 &#40;trifft überhaupt nicht zu&#41; bis 5
           &#40;trifft vollkommen zu&#41;.
         </p>
-        <PartTwoInput method="calendar" onButtonChange={onButtonChange} />
-        <PartTwoInput method="dropdown" onButtonChange={onButtonChange} />
-        <PartTwoInput method="oneTextbox" onButtonChange={onButtonChange} />
-        <PartTwoInput method="splitTextbox" onButtonChange={onButtonChange} />
+      </div>
+      <PartTwoInput method="calendar" onButtonChange={onButtonChange} />
+      <PartTwoInput method="dropdown" onButtonChange={onButtonChange} />
+      <PartTwoInput method="oneTextbox" onButtonChange={onButtonChange} />
+      <PartTwoInput method="splitTextbox" onButtonChange={onButtonChange} />
+      <div className="p-md-5 p-2 m-md-4 m-1 mb-3">
         <Link
           to="/Demographics"
           className="btn btn-custom"

@@ -13,8 +13,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="p-5 my-4 bg-light rounded-3">
-        <h1>Studie zur Eingabe von Geburtsdaten</h1>
+      <div className="p-5 m-4 bg-light rounded-3">
+        <h3>Herzlich Willkommen</h3>
         <p>
           Hier ist die Startseite. Hier werden Sie eine Einleitung und weitere
           Informationen zur Studie lesen.

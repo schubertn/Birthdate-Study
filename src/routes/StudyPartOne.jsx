@@ -142,9 +142,7 @@ export default function StudyPartOne() {
             </div>
           </div>
         </div>
-        <div className="p-5 my-4 bg-light rounded-3">
-          <h1>Studie zur Eingabe von Geburtsdaten</h1>
-
+        <div className="p-5 m-4 bg-light rounded-3">
           <div className="row align-items-center g-3">
             <DateInput
               key={counter} // used to reset state (so that input field is cleared every time)
@@ -170,7 +168,7 @@ export default function StudyPartOne() {
                     handleSubmit(e);
                   }}
                 >
-                  Testbutton
+                  Weiter
                 </button>
               </div>
             </div>

@@ -30,21 +30,21 @@ export default function PartTwoInput(props) {
   };
 
   return (
-    <div className="container p-3">
+    <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
       <div className="row align-items-center">
         <div className="col-md-4 col-12">
-          <div className="card">
+          <div className="card mb-2 mb-md-0">
             <img src={imagePath} className="card-img-top" alt="test image" />
           </div>
         </div>
         <div className="col-md-4 col-12">
-          <div className="card">
+          <div className="card mb-2 mb-md-0">
             <div className="card-body">
               <p className="card-text">
-                Mit dieser Eingabemethode war die Eingabe des Datums schnell
-                möglich
+                Mit dieser Eingabemethode war die Eingabe des Datums für mich
+                schnell und effizient möglich.
               </p>
-              <div className="form-check form-check-inline">
+              <div className="form-check">
                 <input
                   type="radio"
                   className="form-check-input"
@@ -55,10 +55,10 @@ export default function PartTwoInput(props) {
                   onChange={() => handleFastButtonChange(1)}
                 />
                 <label className="form-check-label" htmlFor="fast1">
-                  1 - trifft überhaupt nicht zu
+                  1 - stimme überhaupt nicht zu
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div className="form-check">
                 <input
                   type="radio"
                   className="form-check-input"
@@ -69,10 +69,10 @@ export default function PartTwoInput(props) {
                   onChange={() => handleFastButtonChange(2)}
                 />
                 <label className="form-check-label" htmlFor="fast2">
-                  2 - trifft nicht zu
+                  2 - stimme eher nicht zu
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div className="form-check">
                 <input
                   type="radio"
                   className="form-check-input"
@@ -83,10 +83,10 @@ export default function PartTwoInput(props) {
                   onChange={() => handleFastButtonChange(3)}
                 />
                 <label className="form-check-label" htmlFor="fast3">
-                  3 - trifft wenig zu
+                  3 - neutral
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div className="form-check">
                 <input
                   type="radio"
                   className="form-check-input"
@@ -97,10 +97,10 @@ export default function PartTwoInput(props) {
                   onChange={() => handleFastButtonChange(4)}
                 />
                 <label className="form-check-label" htmlFor="fast4">
-                  4 - trifft etwas zu
+                  4 - stimme eher zu
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div className="form-check">
                 <input
                   type="radio"
                   className="form-check-input"
@@ -111,34 +111,20 @@ export default function PartTwoInput(props) {
                   onChange={() => handleFastButtonChange(5)}
                 />
                 <label className="form-check-label" htmlFor="fast5">
-                  5 - trifft sehr zu
-                </label>
-              </div>
-              <div className="form-check form-check-inline">
-                <input
-                  type="radio"
-                  className="form-check-input"
-                  name={props.method + "fast"}
-                  value="fast6"
-                  id="fast6"
-                  checked={buttonFast == 6}
-                  onChange={() => handleFastButtonChange(6)}
-                />
-                <label className="form-check-label" htmlFor="fast6">
-                  6 - trifft vollkommen zu
+                  5 - stimme vollkommen zu
                 </label>
               </div>
             </div>
           </div>
         </div>
         <div className="col-md-4 col-12">
-          <div className="card">
+          <div className="card mb-2 mb-md-0">
             <div className="card-body">
               <p className="card-text">
-                Mit dieser Eingabemethode war die Eingabe des Datums bequem
-                möglich
+                Mit dieser Eingabemethode war die Eingabe des Datums für mich
+                einfach und nicht zu komplex.
               </p>
-              <div className="form-check form-check-inline">
+              <div className="form-check">
                 <input
                   type="radio"
                   className="form-check-input"
@@ -149,10 +135,10 @@ export default function PartTwoInput(props) {
                   onChange={() => handleEasyButtonChange(1)}
                 />
                 <label className="form-check-label" htmlFor="easy1">
-                  1 - trifft überhaupt nicht zu
+                  1 - stimme überhaupt nicht zu
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div className="form-check">
                 <input
                   type="radio"
                   className="form-check-input"
@@ -163,10 +149,10 @@ export default function PartTwoInput(props) {
                   onChange={() => handleEasyButtonChange(2)}
                 />
                 <label className="form-check-label" htmlFor="easy2">
-                  2 - trifft nicht zu
+                  2 - stimme eher nicht zu
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div className="form-check">
                 <input
                   type="radio"
                   className="form-check-input"
@@ -177,10 +163,10 @@ export default function PartTwoInput(props) {
                   onChange={() => handleEasyButtonChange(3)}
                 />
                 <label className="form-check-label" htmlFor="easy3">
-                  3 - trifft wenig zu
+                  3 - neutral
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div className="form-check">
                 <input
                   type="radio"
                   className="form-check-input"
@@ -191,10 +177,10 @@ export default function PartTwoInput(props) {
                   onChange={() => handleEasyButtonChange(4)}
                 />
                 <label className="form-check-label" htmlFor="easy4">
-                  4 - trifft etwas zu
+                  4 - stimme eher zu
                 </label>
               </div>
-              <div className="form-check form-check-inline">
+              <div className="form-check">
                 <input
                   type="radio"
                   className="form-check-input"
@@ -205,21 +191,7 @@ export default function PartTwoInput(props) {
                   onChange={() => handleEasyButtonChange(5)}
                 />
                 <label className="form-check-label" htmlFor="easy5">
-                  5 - trifft sehr zu
-                </label>
-              </div>
-              <div className="form-check form-check-inline">
-                <input
-                  type="radio"
-                  className="form-check-input"
-                  name={props.method + "easy"}
-                  value="easy6"
-                  id="easy6"
-                  checked={buttonEasy == 6}
-                  onChange={() => handleEasyButtonChange(6)}
-                />
-                <label className="form-check-label" htmlFor="easy6">
-                  6 - trifft vollkommen zu
+                  5 - stimme vollkommen zu
                 </label>
               </div>
             </div>

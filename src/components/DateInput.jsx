@@ -86,8 +86,8 @@ export default function DateInput(props) {
   if (props.inputMethod == "calendar") {
     return (
       <div className="container">
-        <p>Datum: {props.date}</p>
-        <div className="row align-items-center g-3">
+        <h4>Datum: {props.date}</h4>
+        <div className="row mt-2 align-items-center g-3">
           <div className="col-auto">
             <input
               type="date"
@@ -105,8 +105,8 @@ export default function DateInput(props) {
   } else if (props.inputMethod == "oneTextbox") {
     return (
       <div className="container">
-        <p>Datum: {props.date}</p>
-        <div className="row align-items-center g-3">
+        <h4>Datum: {props.date}</h4>
+        <div className="row mt-2 align-items-center g-3">
           <div className="col-auto">
             <input
               type="text"
@@ -123,8 +123,8 @@ export default function DateInput(props) {
   } else if (props.inputMethod == "splitTextbox") {
     return (
       <div className="container">
-        <p>Datum: {props.date}</p>
-        <div className="row align-items-center g-3">
+        <h4>Datum: {props.date}</h4>
+        <div className="row mt-2 align-items-center g-3">
           <div className="col-lg-1 col-3">
             <input
               type="text"
@@ -155,8 +155,8 @@ export default function DateInput(props) {
   } else if (props.inputMethod == "dropdown") {
     return (
       <div className="container">
-        <p>Datum: {props.date}</p>
-        <div className="row align-items-center g-3">
+        <h4>Datum: {props.date}</h4>
+        <div className="row mt-2 align-items-center g-3">
           <div className="col-auto">
             <select className="form-select" onChange={handleDayChange}>
               <option value="Tag">Tag</option>
@@ -190,7 +190,8 @@ export default function DateInput(props) {
         </div>
       </div>
     );
-  } else { // TODO: remove after testing
+  } else {
+    // TODO: remove after testing
     return (
       <div className="container">
         <p>Problem</p>
