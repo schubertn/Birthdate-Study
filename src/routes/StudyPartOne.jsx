@@ -19,7 +19,7 @@ export default function StudyPartOne() {
 
   // value for the progressbar
   // TODO: change depending on final number of iterations
-  var progress = counter * 10 + 30;
+  var progress = counter * 10 + 15;
 
   // get the time only once when the page is first loaded
   if (!sessionStorage.getItem("startTime")) {
@@ -136,12 +136,18 @@ export default function StudyPartOne() {
           <div className="progress">
             <div
               className="progress-bar"
+              role="progressbar"
+              aria-label="Fortschritt der Studie"
+              aria-valuenow={progress}
+              aria-valuemin="0"
+              aria-valuemax="100"
               style={{ width: "" + progress + "%" }}
             >
               {progress} %
             </div>
           </div>
         </div>
+
         <div className="p-5 m-4 bg-light rounded-3">
           <div className="row align-items-center g-3">
             <DateInput
@@ -154,8 +160,10 @@ export default function StudyPartOne() {
             <div className="row align-items-center g-3">
               <div className="col-auto">
                 <button
+                  type="button"
                   className="btn btn-custom"
                   disabled={disabled}
+                  aria-disabled={disabled}
                   onClick={(e) => {
                     sessionStorage.setItem(
                       "endTime",

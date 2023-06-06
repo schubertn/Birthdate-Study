@@ -81,11 +81,20 @@ export default function StudyPartTwo() {
     <div className="container">
       <div className="m-4">
         <div className="progress">
-          <div className="progress-bar" style={{ width: "90%" }}>
+          <div
+            className="progress-bar"
+            role="progressbar"
+            aria-label="Fortschritt der Studie"
+            aria-valuenow="90"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style={{ width: "90%" }}
+          >
             90%
           </div>
         </div>
       </div>
+
       <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
         <h3>Persönliche Einschätzung</h3>
         <p>
@@ -104,6 +113,7 @@ export default function StudyPartTwo() {
           className="btn btn-custom"
           role="button"
           disabled={disabled}
+          aria-disabled={disabled}
           onClick={() => {
             handleSubmit();
           }}

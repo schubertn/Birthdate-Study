@@ -7,8 +7,16 @@ export default function Home() {
     <div className="container">
       <div className="m-4">
         <div className="progress">
-          <div className="progress-bar" style={{ width: "10%" }}>
-            10%
+          <div
+            className="progress-bar"
+            role="progressbar"
+            aria-label="Fortschritt der Studie"
+            aria-valuenow="5"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            style={{ width: "5%" }}
+          >
+            5%
           </div>
         </div>
       </div>
@@ -29,5 +37,3 @@ export default function Home() {
     </div>
   );
 }
-
-// className="btn btn-primary shadow-none" if we want to remove the shadow on button click

@@ -34,7 +34,11 @@ export default function PartTwoInput(props) {
       <div className="row align-items-center">
         <div className="col-md-4 col-12">
           <div className="card mb-2 mb-md-0">
-            <img src={imagePath} className="card-img-top" alt="test image" />
+            <img
+              src={imagePath}
+              className="card-img-top"
+              alt={"Ein Screenshot der Eingabemethode " + props.method}
+            />
           </div>
         </div>
         <div className="col-md-4 col-12">
