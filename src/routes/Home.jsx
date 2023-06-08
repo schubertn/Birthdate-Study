@@ -37,10 +37,20 @@ export default function Home() {
           Einverständnis zur Teilnahme. Es folgt eine genauere Anleitung zur
           Durchführung der Studie.
         </p>
-        <Link to="/Instructions" className="btn btn-custom" role="button">
+        <Link
+          to="/Instructions"
+          state={{ previousComponent: "home" }}
+          className="btn btn-custom"
+          role="button"
+        >
           Weiter zur Anleitung
         </Link>
-        <Link to="/StudyPartTwo" className="btn btn-custom" role="button">
+        <Link
+          to="/StudyPartTwo"
+          state={{ previousComponent: "studyPartOne" }}
+          className="btn btn-custom"
+          role="button"
+        >
           Testing StudyPartTwo
         </Link>
       </div>

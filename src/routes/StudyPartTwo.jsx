@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, Navigate } from "react-router-dom";
 import { updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 import { docRef } from "../firebase";
 import PartTwoInput from "../components/PartTwoInput";
@@ -77,50 +77,56 @@ export default function StudyPartTwo() {
     }
   };
 
-  return (
-    <div className="container">
-      <div className="m-4">
-        <div className="progress">
-          <div
-            className="progress-bar"
-            role="progressbar"
-            aria-label="Fortschritt der Studie"
-            aria-valuenow="90"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            style={{ width: "90%" }}
-          >
-            90%
+  // prevent user from manually navigating to the second part of the study
+  if (useLocation().state?.previousComponent != "studyPartOne") {
+    return <Navigate to="/Error" />;
+  } else {
+    return (
+      <div className="container">
+        <div className="m-4">
+          <div className="progress">
+            <div
+              className="progress-bar"
+              role="progressbar"
+              aria-label="Fortschritt der Studie"
+              aria-valuenow="90"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style={{ width: "90%" }}
+            >
+              90%
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
-        <h3>Persönliche Einschätzung</h3>
-        <p>
-          Bitte bewerten Sie die im Folgenden abgebildeten Eingabemethoden auf
-          einer Skala von 1 &#40;trifft überhaupt nicht zu&#41; bis 5
-          &#40;trifft vollkommen zu&#41;.
-        </p>
+        <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
+          <h3>Persönliche Einschätzung</h3>
+          <p>
+            Bitte bewerten Sie die im Folgenden abgebildeten Eingabemethoden auf
+            einer Skala von 1 &#40;trifft überhaupt nicht zu&#41; bis 5
+            &#40;trifft vollkommen zu&#41;.
+          </p>
+        </div>
+        <PartTwoInput method="calendar" onButtonChange={onButtonChange} />
+        <PartTwoInput method="dropdown" onButtonChange={onButtonChange} />
+        <PartTwoInput method="oneTextbox" onButtonChange={onButtonChange} />
+        <PartTwoInput method="splitTextbox" onButtonChange={onButtonChange} />
+        <div className="p-md-5 p-2 m-md-4 m-1 mb-3">
+          <Link
+            to="/Demographics"
+            state={{ previousComponent: "studyPartTwo" }}
+            className="btn btn-custom"
+            role="button"
+            disabled={disabled}
+            aria-disabled={disabled}
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
+            Absenden
+          </Link>
+        </div>
       </div>
-      <PartTwoInput method="calendar" onButtonChange={onButtonChange} />
-      <PartTwoInput method="dropdown" onButtonChange={onButtonChange} />
-      <PartTwoInput method="oneTextbox" onButtonChange={onButtonChange} />
-      <PartTwoInput method="splitTextbox" onButtonChange={onButtonChange} />
-      <div className="p-md-5 p-2 m-md-4 m-1 mb-3">
-        <Link
-          to="/Demographics"
-          className="btn btn-custom"
-          role="button"
-          disabled={disabled}
-          aria-disabled={disabled}
-          onClick={() => {
-            handleSubmit();
-          }}
-        >
-          Absenden
-        </Link>
-      </div>
-    </div>
-  );
+    );
+  }
 }

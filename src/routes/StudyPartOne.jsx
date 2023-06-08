@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 import { docRef } from "../firebase";
@@ -125,10 +125,19 @@ export default function StudyPartOne() {
     }
   };
 
+  // prevent user from manually navigating to the study without reading the instructions
+  if (useLocation().state?.previousComponent != "instructions") {
+    return <Navigate to="/Error" />;
+  }
   // show all 12 possible combinations of the 3 dates and 4 input methods
   // afterwards go to next screen
-  if (counter >= 12) {
-    return <Navigate to="/StudyPartTwo" />;
+  else if (counter >= 12) {
+    return (
+      <Navigate
+        to="/StudyPartTwo"
+        state={{ previousComponent: "studyPartOne" }}
+      />
+    );
   } else {
     return (
       <div className="container">
