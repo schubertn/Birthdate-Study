@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 DateInput.propTypes = {
   inputMethod: PropTypes.string,
@@ -24,8 +25,7 @@ export default function DateInput(props) {
   // create an array of all years
   const createYearArray = () => {
     var yearArray = [];
-    // TODO: use correct start date and current date using Date() [also for calendar input]
-    for (var i = 1950; i < 2024; i++) {
+    for (var i = 1950; i <= 2023; i++) {
       yearArray.push(i.toString());
     }
     return yearArray;
@@ -94,8 +94,6 @@ export default function DateInput(props) {
               className="form-control"
               id="calendar"
               name="calendar"
-              min="1950-01-01"
-              max="2023-12-31" // TODO: change to current date
               onChange={handleCalendarInput}
             ></input>
           </div>
@@ -159,7 +157,9 @@ export default function DateInput(props) {
         <div className="row mt-2 align-items-center g-3">
           <div className="col-auto">
             <select className="form-select" onChange={handleDayChange}>
-              <option value="Tag">Tag</option>
+              <option value="Tag" hidden>
+                Tag
+              </option>
               {days.map((day) => (
                 <option key={day} value={day}>
                   {day}
@@ -169,7 +169,9 @@ export default function DateInput(props) {
           </div>
           <div className="col-auto">
             <select className="form-select" onChange={handleMonthChange}>
-              <option value="Monat">Monat</option>
+              <option value="Monat" hidden>
+                Monat
+              </option>
               {months.map((month) => (
                 <option key={month.value} value={month.value}>
                   {month.label}
@@ -179,7 +181,9 @@ export default function DateInput(props) {
           </div>
           <div className="col-auto">
             <select className="form-select" onChange={handleYearChange}>
-              <option value="Jahr">Jahr</option>
+              <option value="Jahr" hidden>
+                Jahr
+              </option>
               {years.map((year) => (
                 <option key={year} value={year}>
                   {year}
@@ -191,11 +195,6 @@ export default function DateInput(props) {
       </div>
     );
   } else {
-    // TODO: remove after testing
-    return (
-      <div className="container">
-        <p>Problem</p>
-      </div>
-    );
+    return <Navigate to="/Error" />;
   }
 }
