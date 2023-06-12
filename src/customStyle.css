@@ -29,8 +29,7 @@ input[type="date"] {
   position: relative;
 }
 
-/* create a new arrow, because we are going to mess up the native one
-see "List of symbols" below if you want another, you could also try to add a font-awesome icon..*/
+/* Add a new calendar icon */
 input[type="date"]:after {
   content: "\F1E4";
   justify-content: flex-end;
