@@ -95,7 +95,7 @@ export default function DateInput(props) {
               id="calendar"
               name="calendar"
               min="1950-01-01"
-              max="2023-12-31"
+              max="2023-12-31" // TODO: change to current date
               onChange={handleCalendarInput}
             ></input>
           </div>

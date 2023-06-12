@@ -30,14 +30,16 @@ input[type="date"] {
 }
 
 /* create a new arrow, because we are going to mess up the native one
-see "List of symbols" below if you want another, you could also try to add a font-awesome icon.. */
+see "List of symbols" below if you want another, you could also try to add a font-awesome icon..*/
 input[type="date"]:after {
-  content: "\25BC"; 
+  content: "\F1E4";
+  justify-content: flex-end;
+  font-family: "bootstrap-icons";
   color: #555;
   padding: 0 5px;
 }
 
-/* change color of symbol on hover */
+/* change color of symbol on hover*/
 input[type="date"]:hover:after {
   color: #4a8246;
 }
