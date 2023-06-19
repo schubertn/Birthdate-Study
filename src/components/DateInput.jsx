@@ -91,9 +91,8 @@ export default function DateInput(props) {
           <div className="col-auto">
             <input
               type="date"
-              className="form-control"
-              id="calendar"
               name="calendar"
+              id="calendar"
               onChange={handleCalendarInput}
             />
           </div>

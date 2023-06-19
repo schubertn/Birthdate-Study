@@ -21,30 +21,40 @@
   background-color: #4a8246;
 }
 
-/* From Stackoverflow */
-/* Show the calendar widget when the user clicks the input field and
-prevent user from using the keyboard for the input. */
-
 input[type="date"] {
-  position: relative;
+  background:#fff url(calendar-date.svg)  97% 50% no-repeat ;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+  padding: 6px 12px;
+  height: 34px;
+  display: block;
+  color: #555555;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  
+}
+input[type="date"]:focus {
+  border-color: #4a8246;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #4a8246;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #4a8246;
 }
 
-/* Add a new calendar icon */
-input[type="date"]:after {
-  content: "\F1E4";
-  justify-content: flex-end;
-  font-family: "bootstrap-icons";
-  color: #555;
-  padding: 0 5px;
+/* adjust increase/decrease button */
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none;
 }
 
-/* change color of symbol on hover*/
-input[type="date"]:hover:after {
-  color: #4a8246;
+/* adjust clear button */
+input[type="date"]::-webkit-clear-button {
+  display: none;
+  -webkit-appearance: none;
 }
 
-/* make the native arrow invisible and stretch it over the whole field
-so you can click anywhere in the input field to trigger the native datepicker*/
 input[type="date"]::-webkit-calendar-picker-indicator {
   position: absolute;
   top: 0;
@@ -55,14 +65,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   height: auto;
   color: transparent;
   background: transparent;
-}
-
-/* adjust increase/decrease button */
-input[type="date"]::-webkit-inner-spin-button {
-  z-index: 1;
-}
-
-/* adjust clear button */
-input[type="date"]::-webkit-clear-button {
-  z-index: 1;
 }
