@@ -5,7 +5,7 @@ export default function Home() {
 
   return (
     <div className="container">
-      <div className="m-4">
+      <div className="p-2 m-md-4 m-1 mb-3">
         <div className="progress">
           <div
             className="progress-bar"
@@ -21,9 +21,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="p-5 m-4 bg-light rounded-3">
-        <h3>Herzlich Willkommen</h3>
-        <p>
+      <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
+        <h3 className="text-center text-md-start">Herzlich Willkommen</h3>
+        <p className="text-center text-md-start">
           Ich führe zur derzeit eine Studie im Rahmen meiner Master-Arbeit
           durch. Dazu beschäftige ich mich mit der Eingabe von Geburtsdaten in
           Online-Formularen. Die Studie nimmt in etwa ??? Minuten in Anspruch
@@ -32,7 +32,7 @@ export default function Home() {
           werden anonym gespeichert und können Ihnen später nicht zugeordnet
           werden.
         </p>
-        <p>
+        <p className="text-center text-md-start">
           Durch das Klicken auf <q>Weiter zur Anleitung</q> bestätigen Sie Ihr
           Einverständnis zur Teilnahme. Es folgt eine genauere Anleitung zur
           Durchführung der Studie.

@@ -6,7 +6,7 @@ export default function Instructions() {
   } else {
     return (
       <div className="container">
-        <div className="m-4">
+        <div className="p-2 m-md-4 m-1 mb-3">
           <div className="progress">
             <div
               className="progress-bar"
@@ -22,9 +22,9 @@ export default function Instructions() {
           </div>
         </div>
 
-        <div className="p-5 m-4 bg-light rounded-3">
-          <h3>Anleitung</h3>
-          <p>
+        <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
+          <h3 className="text-center text-md-start">Anleitung</h3>
+          <p className="text-center text-md-start">
             Die Studie besteht insgesamt aus ??? Durchgängen. In jedem Durchgang
             müssen Sie ein vorgegebenes Datum eingeben und anschließend durch
             einen <q>Weiter</q>-Button Ihre Eingabe bestätigen. Danach beginnt
@@ -33,17 +33,17 @@ export default function Instructions() {
             der Eingabe. Bitte versuchen Sie, das gegebene Datum korrekt und
             möglichst schnell einzugeben.
           </p>
-          <p>
+          <p className="text-center text-md-start">
             Im Anschluss an die eigentlich Studie werden Sie außerdem nach Ihrer
             persönlichen Einschätzung zu den verschiedenen Eingabemethoden
             gefragt, die Sie auf einer Skala von 1 bis 5 bewerten können.
           </p>
-          <p>
+          <p className="text-center text-md-start">
             Bitte stellen Sie sicher, dass während der gesamten Studie eine
             stabile Internetverbindung besteht und Sie die Studie nicht
             zwischenzeitlich unterbrechen.
           </p>
-          <p>
+          <p className="text-center text-md-start">
             Wenn Sie auf <q>Beginnen</q> klicken, startet die eigentliche
             Studie.
           </p>

@@ -7,7 +7,7 @@ export default function End() {
   } else {
     return (
       <div className="container">
-        <div className="m-4">
+        <div className="p-2 m-md-4 m-1 mb-3">
           <div className="progress">
             <div
               className="progress-bar"
@@ -23,7 +23,7 @@ export default function End() {
           </div>
         </div>
 
-        <div className="p-5 m-4 bg-light rounded-3">
+        <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
           <h3>Vielen Dank für Ihre Teilnahme!</h3>
           <p>Studie beendet! Danke!</p>
         </div>

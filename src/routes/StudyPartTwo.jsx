@@ -83,7 +83,7 @@ export default function StudyPartTwo() {
   } else {
     return (
       <div className="container">
-        <div className="m-4">
+        <div className="p-2 m-md-4 m-1 mb-3">
           <div className="progress">
             <div
               className="progress-bar"
@@ -100,8 +100,8 @@ export default function StudyPartTwo() {
         </div>
 
         <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
-          <h3>Persönliche Einschätzung</h3>
-          <p>
+          <h3 className="text-center text-md-start">Persönliche Einschätzung</h3>
+          <p className="text-center text-md-start">
             Bitte bewerten Sie die im Folgenden abgebildeten Eingabemethoden auf
             einer Skala von 1 &#40;trifft überhaupt nicht zu&#41; bis 5
             &#40;trifft vollkommen zu&#41;.

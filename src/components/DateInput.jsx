@@ -95,7 +95,7 @@ export default function DateInput(props) {
               id="calendar"
               name="calendar"
               onChange={handleCalendarInput}
-            ></input>
+            />
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@ export default function DateInput(props) {
     return (
       <div className="container">
         <h4>Datum: {props.date}</h4>
-        <div className="row mt-2 align-items-center g-3">
+        <div className="row mt-2 align-items-center g-1 g-md-3">
           <div className="col-lg-1 col-3">
             <input
               type="text"
@@ -154,8 +154,8 @@ export default function DateInput(props) {
     return (
       <div className="container">
         <h4>Datum: {props.date}</h4>
-        <div className="row mt-2 align-items-center g-3">
-          <div className="col-auto">
+        <div className="row mt-2 align-items-center g-1 g-md-3">
+          <div className="col-4 col-md-auto">
             <select className="form-select" onChange={handleDayChange}>
               <option value="Tag" hidden>
                 Tag
@@ -167,7 +167,7 @@ export default function DateInput(props) {
               ))}
             </select>
           </div>
-          <div className="col-auto">
+          <div className="col-4 col-md-auto">
             <select className="form-select" onChange={handleMonthChange}>
               <option value="Monat" hidden>
                 Monat
@@ -179,7 +179,7 @@ export default function DateInput(props) {
               ))}
             </select>
           </div>
-          <div className="col-auto">
+          <div className="col-4 col-md-auto">
             <select className="form-select" onChange={handleYearChange}>
               <option value="Jahr" hidden>
                 Jahr

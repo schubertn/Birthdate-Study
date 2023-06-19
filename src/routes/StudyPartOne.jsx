@@ -141,7 +141,7 @@ export default function StudyPartOne() {
   } else {
     return (
       <div className="container">
-        <div className="m-4">
+        <div className="p-2 m-md-4 m-1 mb-3">
           <div className="progress">
             <div
               className="progress-bar"
@@ -157,7 +157,7 @@ export default function StudyPartOne() {
           </div>
         </div>
 
-        <div className="p-5 m-4 bg-light rounded-3">
+        <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
           <div className="row align-items-center g-3">
             <DateInput
               key={counter} // used to reset state (so that input field is cleared every time)

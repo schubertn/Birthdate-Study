@@ -5,9 +5,9 @@ export default function Error() {
   console.error(error);
 
   return (
-    <div className="p-5 m-4 bg-light rounded-3">
-      <h3>Ups!</h3>
-      <p>
+    <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
+      <h3 className="text-center text-md-start">Ups!</h3>
+      <p className="text-center text-md-start">
         Ein unerwarteter Fehler ist aufgetreten. Bitte kehren Sie zurück zum
         Beginn der Studie.
       </p>

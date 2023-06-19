@@ -9,7 +9,7 @@ export default function Demographics() {
   } else {
     return (
       <div className="container">
-        <div className="m-4">
+        <div className="p-2 m-md-4 m-1 mb-3">
           <div className="progress">
             <div
               className="progress-bar"
@@ -25,9 +25,11 @@ export default function Demographics() {
           </div>
         </div>
 
-        <div className="p-5 m-4 bg-light rounded-3">
-          <h3>Demographische Daten</h3>
-          <p>Hier werden vielleicht noch weitere Fragen gestellt.</p>
+        <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
+          <h3 className="text-center text-md-start">Demographische Daten</h3>
+          <p className="text-center text-md-start">
+            Hier werden vielleicht noch weitere Fragen gestellt.
+          </p>
           <Link
             to="/End"
             state={{ previousComponent: "demographics" }}
