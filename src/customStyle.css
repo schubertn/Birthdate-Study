@@ -21,8 +21,9 @@
   background-color: #4a8246;
 }
 
+/**
 input[type="date"] {
-  background:#fff url(calendar-date.svg)  97% 50% no-repeat ;
+  background:#fff url(calendar-fill.svg)  97% 50% no-repeat ;
   border: 1px solid #cccccc;
   border-radius: 4px;
   background-color: #ffffff;
@@ -43,13 +44,11 @@ input[type="date"]:focus {
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #4a8246;
 }
 
-/* adjust increase/decrease button */
 input[type="date"]::-webkit-inner-spin-button {
   display: none;
   -webkit-appearance: none;
 }
 
-/* adjust clear button */
 input[type="date"]::-webkit-clear-button {
   display: none;
   -webkit-appearance: none;
@@ -66,3 +65,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: transparent;
   background: transparent;
 }
+**/

@@ -1,6 +1,95 @@
 import { Link, useLocation, Navigate } from "react-router-dom";
+import {
+  setDoc,
+} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+import { docRef } from "../firebase";
 
 export default function Instructions() {
+
+
+  const setFirestoreDocRef = async () => {
+    await setDoc(docRef, {
+      timestamp: Date(),
+      // input method calendar with date 11.01.1011
+      calendar0: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      // input method calendar with date 22.02.2022
+      calendar1: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      calendar2: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      dropdown0: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      dropdown1: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      dropdown2: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      oneTextbox0: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      oneTextbox1: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      oneTextbox2: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      splitTextbox0: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      splitTextbox1: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      splitTextbox2: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      // results from part two of the study
+      preferenceFast: {
+        calendar: null,
+        dropdown: null,
+        oneTextbox: null,
+        splitTextbox: null,
+      },
+      preferenceEasy: {
+        calendar: null,
+        dropdown: null,
+        oneTextbox: null,
+        splitTextbox: null,
+      },
+      // TODO: add demographics
+    });
+    
+  }
+
   if (useLocation().state?.previousComponent != "home") {
     return <Navigate to="/Error" />;
   } else {
@@ -52,6 +141,7 @@ export default function Instructions() {
             state={{ previousComponent: "instructions" }}
             className="btn btn-custom"
             role="button"
+            onClick={setFirestoreDocRef}
           >
             Beginnen
           </Link>
