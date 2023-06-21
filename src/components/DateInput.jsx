@@ -9,7 +9,6 @@ DateInput.propTypes = {
 };
 
 export default function DateInput(props) {
-
   // create an array of all days
   const createDayArray = () => {
     var dayArray = [];
@@ -79,13 +78,13 @@ export default function DateInput(props) {
 
   // needed to show a consistent input field for the date picker across all devices and browsers
   const calendarRef = useRef(null);
-  const [valueState, setValueState] = useState("TT.MM.JJJJ");
+  const [calendarValueState, setCalendarValueState] = useState("TT.MM.JJJJ");
 
   // change the format of the date from YYYY-MM-DD to DD-MM-YYYY
   const handleCalendarInput = (e) => {
     const stringArray = e.target.value.split("-");
     const formattedDate = stringArray.reverse().join(".");
-    setValueState(formattedDate);
+    setCalendarValueState(formattedDate);
     props.onInputDate(formattedDate);
   };
 
@@ -95,22 +94,31 @@ export default function DateInput(props) {
         <h4>Datum: {props.date}</h4>
         <div className="row mt-2 align-items-center g-3">
           <div className="col-auto">
-            <input ref={calendarRef}
+            <input
+              ref={calendarRef}
               type="date"
               name="calendar"
               id="calendar"
               style={{ visibility: "hidden", position: "absolute" }}
               onChange={handleCalendarInput}
             />
-            <input
-              type="text"
-              id="calendarText"
-              className="form-control"
-              placeholder="calendar"
-              value={valueState}
-              readOnly
-              onClick={() => calendarRef.current.showPicker()}
-            />
+            <div className="input-group">
+              <input
+                type="text"
+                id="calendarText"
+                className="form-control shadow-none"
+                placeholder="TT.MM.JJJJ"
+                value={calendarValueState}
+                readOnly
+                onClick={() => calendarRef.current.showPicker()}
+              />
+              <span className="input-group-text">
+                <span
+                  className="bi bi-calendar-date"
+                  onClick={() => calendarRef.current.showPicker()}
+                ></span>
+              </span>
+            </div>
           </div>
         </div>
       </div>

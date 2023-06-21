@@ -21,48 +21,18 @@
   background-color: #4a8246;
 }
 
-/**
-input[type="date"] {
-  background:#fff url(calendar-fill.svg)  97% 50% no-repeat ;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
+.form-control:disabled,
+.form-control[readonly] {
   background-color: #ffffff;
-  padding: 6px 12px;
-  height: 34px;
-  display: block;
-  color: #555555;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  
-}
-input[type="date"]:focus {
-  border-color: #4a8246;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #4a8246;
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #4a8246;
+  color: grey;
 }
 
-input[type="date"]::-webkit-inner-spin-button {
-  display: none;
-  -webkit-appearance: none;
+.input-group-text {
+  color: #005f50;
+  background-color: #ffffff;
 }
 
-input[type="date"]::-webkit-clear-button {
-  display: none;
-  -webkit-appearance: none;
+.input-group:focus-within {
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: auto;
-  height: auto;
-  color: transparent;
-  background: transparent;
-}
-**/
