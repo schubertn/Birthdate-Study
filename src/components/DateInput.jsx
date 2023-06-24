@@ -49,9 +49,9 @@ export default function DateInput(props) {
   const years = createYearArray();
 
   // using state to keep track of what the selected day/month/year is
-  const [day, setDay] = useState("DD");
+  const [day, setDay] = useState("TT");
   const [month, setMonth] = useState("MM");
-  const [year, setYear] = useState("YYYY");
+  const [year, setYear] = useState("JJJJ");
 
   // the string we will send back to the StudyPartOne component
   var dateString = "";

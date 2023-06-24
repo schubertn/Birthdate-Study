@@ -5,6 +5,15 @@
   margin: 2px;
 }
 
+.btn-custom-disabled {
+  color: #ffffff;
+  background-color: #4a8246;
+  border-color: #4a8246;
+  margin: 2px;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
 .btn-custom:hover,
 .btn-custom:focus,
 .btn-custom:active:focus,

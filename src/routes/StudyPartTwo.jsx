@@ -7,11 +7,15 @@ import PartTwoInput from "../components/PartTwoInput";
 export default function StudyPartTwo() {
   // bool to disable the button as long as there is no input
   // TODO: set to true once testing is done
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   // arrays that will be filled with the selected values for the radio buttons
-  var buttonFastArray = new Array(4).fill(null);
-  var buttonEasyArray = new Array(4).fill(null);
+  var buttonFastArray =
+    JSON.parse(window.sessionStorage.getItem("buttonFastArray")) ||
+    new Array(4).fill(null);
+  var buttonEasyArray =
+    JSON.parse(window.sessionStorage.getItem("buttonEasyArray")) ||
+    new Array(4).fill(null);
 
   // called every time a new radio button is selected and saves the new value
   const onButtonChange = (buttonValue, method, type) => {
@@ -50,15 +54,30 @@ export default function StudyPartTwo() {
           console.log("Error");
       }
     }
-    // enable submit button once all radio buttons are checked
+
+    // enable submit button once all radio buttons are checked and temporarily store the results
     if (!buttonFastArray.includes(null) && !buttonEasyArray.includes(null)) {
+      window.sessionStorage.setItem(
+        "buttonFastArray",
+        JSON.stringify(buttonFastArray)
+      );
+      window.sessionStorage.setItem(
+        "buttonEasyArray",
+        JSON.stringify(buttonEasyArray)
+      );
       setDisabled(false);
-      console.log("Button is now enabled");
     }
   };
 
   // called when the user presses the submit button
   const handleSubmit = async () => {
+    buttonFastArray = JSON.parse(
+      window.sessionStorage.getItem("buttonFastArray")
+    );
+    buttonEasyArray = JSON.parse(
+      window.sessionStorage.getItem("buttonEasyArray")
+    );
+
     // update data in firestore
     try {
       await updateDoc(docRef, {
@@ -100,7 +119,9 @@ export default function StudyPartTwo() {
         </div>
 
         <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
-          <h3 className="text-center text-md-start">Persönliche Einschätzung</h3>
+          <h3 className="text-center text-md-start">
+            Persönliche Einschätzung
+          </h3>
           <p className="text-center text-md-start">
             Bitte bewerten Sie die im Folgenden abgebildeten Eingabemethoden auf
             einer Skala von 1 &#40;trifft überhaupt nicht zu&#41; bis 5
@@ -115,10 +136,8 @@ export default function StudyPartTwo() {
           <Link
             to="/Demographics"
             state={{ previousComponent: "studyPartTwo" }}
-            className="btn btn-custom"
+            className={disabled ? "btn btn-custom-disabled" : "btn btn-custom"}
             role="button"
-            disabled={disabled}
-            aria-disabled={disabled}
             onClick={() => {
               handleSubmit();
             }}

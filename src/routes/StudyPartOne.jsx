@@ -12,7 +12,7 @@ const dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
 export default function StudyPartOne() {
   // bool to disable the button as long as there is no input
   // TODO: set to true once testing is done
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   // counter for number of iterations of the study (currently there are 9)
   const [counter, setCounter] = useState(0);
@@ -73,8 +73,14 @@ export default function StudyPartOne() {
   const [inputDate, setInputDate] = useState("");
   const onInputDate = (date) => {
     setInputDate(date);
-    // allow button to be clicked
-    setDisabled(false);
+    // allow button to be clicked if all fields have been filled
+    if (
+      !date.includes("TT") &&
+      !date.includes("MM") &&
+      !date.includes("JJJJ")
+    ) {
+      setDisabled(false);
+    }
   };
 
   // calculate the time the user needs until button is pressed
@@ -131,7 +137,8 @@ export default function StudyPartOne() {
   }
   // show all 12 possible combinations of the 3 dates and 4 input methods
   // afterwards go to next screen
-  else if (counter >= 12) {
+  else if (counter >= 3) {
+    // TODO: set back to 12
     return (
       <Navigate
         to="/StudyPartTwo"
@@ -179,7 +186,7 @@ export default function StudyPartOne() {
                       performance.now().toString()
                     );
                     setCounter(counter + 1);
-                    // TODO: setDisabled(true);
+                    setDisabled(true); //Todo
                     sessionStorage.setItem("progress", progress.toString());
                     sessionStorage.setItem("counter", counter.toString());
                     handleSubmit(e);
