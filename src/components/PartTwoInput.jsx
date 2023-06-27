@@ -32,17 +32,17 @@ export default function PartTwoInput(props) {
   return (
     <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
       <div className="row align-items-center">
-        <div className="col-md-4 col-12">
-          <div className="card mb-2 mb-md-0">
+        <div className="col-md-4 col-6 offset-md-0 offset-3">
+          <div className="card mb-2 mb-md-0 shadow">
             <img
               src={imagePath}
-              className="card-img-top"
+              className="card-img-fluid img-thumbnail"
               alt={"Ein Screenshot der Eingabemethode " + props.method}
             />
           </div>
         </div>
         <div className="col-md-4 col-12">
-          <div className="card mb-2 mb-md-0">
+          <div className="card mb-2 mb-md-0 shadow">
             <div className="card-body">
               <p className="card-text">
                 Mit dieser Eingabemethode war die Eingabe des Datums für mich
@@ -122,7 +122,7 @@ export default function PartTwoInput(props) {
           </div>
         </div>
         <div className="col-md-4 col-12">
-          <div className="card mb-2 mb-md-0">
+          <div className="card mb-2 mb-md-0 shadow">
             <div className="card-body">
               <p className="card-text">
                 Mit dieser Eingabemethode war die Eingabe des Datums für mich
