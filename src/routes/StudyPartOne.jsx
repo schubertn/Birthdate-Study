@@ -30,6 +30,30 @@ export default function StudyPartOne() {
   const createShuffledArray = () => {
     let newArray = createCombinationsArray();
     shuffleArray(newArray);
+
+    // TODO: remove this
+    let object1 = {
+      date: "22.02.2022",
+      inputMethod: "calendar",
+    };
+    let object2 = {
+      date: "22.02.2022",
+      inputMethod: "dropdown",
+    };
+    let object3 = {
+      date: "22.02.2022",
+      inputMethod: "oneTextbox",
+    };
+    let object4 = {
+      date: "22.02.2022",
+      inputMethod: "splitTextbox",
+    };
+    newArray = [];
+    newArray.push(object1);
+    newArray.push(object2);
+    newArray.push(object3);
+    newArray.push(object4);
+
     return newArray;
   };
 
@@ -137,7 +161,7 @@ export default function StudyPartOne() {
   }
   // show all 12 possible combinations of the 3 dates and 4 input methods
   // afterwards go to next screen
-  else if (counter >= 3) {
+  else if (counter >= 4) {
     // TODO: set back to 12
     return (
       <Navigate
@@ -186,7 +210,7 @@ export default function StudyPartOne() {
                       performance.now().toString()
                     );
                     setCounter(counter + 1);
-                    setDisabled(true); //Todo
+                    setDisabled(true); // TODO: remove for testing
                     sessionStorage.setItem("progress", progress.toString());
                     sessionStorage.setItem("counter", counter.toString());
                     handleSubmit(e);

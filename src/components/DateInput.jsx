@@ -33,18 +33,18 @@ export default function DateInput(props) {
 
   const days = createDayArray();
   const months = [
-    { label: "Januar", value: "01" },
-    { label: "Februar", value: "02" },
-    { label: "März", value: "03" },
-    { label: "April", value: "04" },
-    { label: "Mai", value: "05" },
-    { label: "Juni", value: "06" },
-    { label: "Juli", value: "07" },
-    { label: "August", value: "08" },
-    { label: "September", value: "09" },
-    { label: "Oktober", value: "10" },
-    { label: "November", value: "11" },
-    { label: "Dezember", value: "12" },
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
   ];
   const years = createYearArray();
 
@@ -181,7 +181,7 @@ export default function DateInput(props) {
           <div className="col-4 col-md-auto">
             <select className="form-select" onChange={handleDayChange}>
               <option value="Tag" hidden>
-                Tag
+                TT
               </option>
               {days.map((day) => (
                 <option key={day} value={day}>
@@ -193,11 +193,11 @@ export default function DateInput(props) {
           <div className="col-4 col-md-auto">
             <select className="form-select" onChange={handleMonthChange}>
               <option value="Monat" hidden>
-                Monat
+                MM
               </option>
               {months.map((month) => (
-                <option key={month.value} value={month.value}>
-                  {month.label}
+                <option key={month} value={month}>
+                  {month}
                 </option>
               ))}
             </select>
@@ -205,7 +205,7 @@ export default function DateInput(props) {
           <div className="col-4 col-md-auto">
             <select className="form-select" onChange={handleYearChange}>
               <option value="Jahr" hidden>
-                Jahr
+                JJJJ
               </option>
               {years.map((year) => (
                 <option key={year} value={year}>
