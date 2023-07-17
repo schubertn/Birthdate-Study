@@ -8,7 +8,7 @@ PartTwoInput.propTypes = {
 
 export default function PartTwoInput(props) {
   // path differs depending on the input method
-  const imagePath = "/" + props.method + ".png";
+  const imagePath = "/" + props.method + ".jpeg";
 
   // selected radio button for the fast question (at the beginning, none is selected)
   const [buttonFast, setButtonFast] = useState(0);
@@ -32,7 +32,7 @@ export default function PartTwoInput(props) {
   return (
     <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
       <div className="row align-items-center">
-        <div className="col-md-4 col-6 offset-md-0 offset-3">
+        <div className="col-md-4 col-10 offset-md-0 offset-1">
           <div className="card mb-2 mb-md-0 shadow">
             <img
               src={imagePath}

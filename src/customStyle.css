@@ -5,6 +5,13 @@
   margin: 2px;
 }
 
+.btn-custom-secondary {
+  color: #4a8246;
+  background-color: #ffffff;
+  border-color: #4a8246;
+  margin: 2px;
+}
+
 .btn-custom-disabled {
   color: #ffffff;
   background-color: #4a8246;

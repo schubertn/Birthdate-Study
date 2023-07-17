@@ -1,28 +1,31 @@
 import { Link, useLocation, Navigate } from "react-router-dom";
-import {
-  setDoc,
-} from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+import { setDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 import { docRef } from "../firebase";
 
 export default function Instructions() {
-
-
   const setFirestoreDocRef = async () => {
     await setDoc(docRef, {
       timestamp: Date(),
-      // input method calendar with date 11.01.1011
+      // input method calendar with date 17.11.2020
       calendar0: {
         time: null,
         input: null,
         correct: false,
       },
-      // input method calendar with date 22.02.2022
+      // input method calendar with date 22.10.1974
       calendar1: {
         time: null,
         input: null,
         correct: false,
       },
+      // input method calendar with date 03.04.1998
       calendar2: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      // input method calendar with date 11.02.2003
+      calendar3: {
         time: null,
         input: null,
         correct: false,
@@ -42,6 +45,11 @@ export default function Instructions() {
         input: null,
         correct: false,
       },
+      dropdown3: {
+        time: null,
+        input: null,
+        correct: false,
+      },
       oneTextbox0: {
         time: null,
         input: null,
@@ -53,6 +61,11 @@ export default function Instructions() {
         correct: false,
       },
       oneTextbox2: {
+        time: null,
+        input: null,
+        correct: false,
+      },
+      oneTextbox3: {
         time: null,
         input: null,
         correct: false,
@@ -72,6 +85,11 @@ export default function Instructions() {
         input: null,
         correct: false,
       },
+      splitTextbox3: {
+        time: null,
+        input: null,
+        correct: false,
+      },
       // results from part two of the study
       preferenceFast: {
         calendar: null,
@@ -85,10 +103,8 @@ export default function Instructions() {
         oneTextbox: null,
         splitTextbox: null,
       },
-      // TODO: add demographics
     });
-    
-  }
+  };
 
   if (useLocation().state?.previousComponent != "home") {
     return <Navigate to="/Error" />;
@@ -114,7 +130,7 @@ export default function Instructions() {
         <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
           <h3 className="text-center text-md-start">Anleitung</h3>
           <p className="text-center text-md-start">
-            Die Studie besteht insgesamt aus ??? Durchgängen. In jedem Durchgang
+            Die Studie besteht insgesamt aus 16 Durchgängen. In jedem Durchgang
             müssen Sie ein vorgegebenes Datum eingeben und anschließend durch
             einen <q>Weiter</q>-Button Ihre Eingabe bestätigen. Danach beginnt
             automatisch der nächste Durchgang. Dabei variieren in allen
@@ -136,18 +152,20 @@ export default function Instructions() {
             Wenn Sie auf <q>Beginnen</q> klicken, startet die eigentliche
             Studie.
           </p>
-          <Link
-            to="/StudyPartOne"
-            state={{ previousComponent: "instructions" }}
-            className="btn btn-custom"
-            role="button"
-            onClick={setFirestoreDocRef}
-          >
-            Beginnen
-          </Link>
-          <Link to="/" className="btn btn-custom" role="button">
-            Zurück zur Startseite
-          </Link>
+          <div className="text-center text-md-start">
+            <Link to="/" className="btn btn-custom-secondary" role="button">
+              Zurück zur Startseite
+            </Link>
+            <Link
+              to="/StudyPartOne"
+              state={{ previousComponent: "instructions" }}
+              className="btn btn-custom"
+              role="button"
+              onClick={setFirestoreDocRef}
+            >
+              Beginnen
+            </Link>
+          </div>
         </div>
       </div>
     );

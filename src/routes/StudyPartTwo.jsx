@@ -6,7 +6,6 @@ import PartTwoInput from "../components/PartTwoInput";
 
 export default function StudyPartTwo() {
   // bool to disable the button as long as there is no input
-  // TODO: set to true once testing is done
   const [disabled, setDisabled] = useState(true);
 
   // arrays that will be filled with the selected values for the radio buttons
@@ -108,12 +107,12 @@ export default function StudyPartTwo() {
               className="progress-bar"
               role="progressbar"
               aria-label="Fortschritt der Studie"
-              aria-valuenow="90"
+              aria-valuenow="95"
               aria-valuemin="0"
               aria-valuemax="100"
-              style={{ width: "90%" }}
+              style={{ width: "95%" }}
             >
-              90%
+              95%
             </div>
           </div>
         </div>
@@ -134,7 +133,7 @@ export default function StudyPartTwo() {
         <PartTwoInput method="splitTextbox" onButtonChange={onButtonChange} />
         <div className="p-md-5 p-2 m-md-4 m-1 mb-3">
           <Link
-            to="/Demographics"
+            to="/End"
             state={{ previousComponent: "studyPartTwo" }}
             className={disabled ? "btn btn-custom-disabled" : "btn btn-custom"}
             role="button"

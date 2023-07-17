@@ -92,13 +92,15 @@ export default function DateInput(props) {
     return (
       <div className="container">
         <h4>Datum: {props.date}</h4>
-        <div className="row mt-2 align-items-center g-3">
+        <div className="row mt-2 align-items-center g-2">
           <div className="col-auto">
             <input
               ref={calendarRef}
               type="date"
               name="calendar"
               id="calendar"
+              min="1950-01-01"
+              max="2023-12-31"
               style={{ visibility: "hidden", position: "absolute" }}
               onChange={handleCalendarInput}
             />
@@ -127,7 +129,7 @@ export default function DateInput(props) {
     return (
       <div className="container">
         <h4>Datum: {props.date}</h4>
-        <div className="row mt-2 align-items-center g-3">
+        <div className="row mt-2 align-items-center g-2">
           <div className="col-auto">
             <input
               type="text"
@@ -145,7 +147,7 @@ export default function DateInput(props) {
     return (
       <div className="container">
         <h4>Datum: {props.date}</h4>
-        <div className="row mt-2 align-items-center g-1 g-md-3">
+        <div className="row mt-2 align-items-center g-2">
           <div className="col-lg-1 col-3">
             <input
               type="text"
@@ -177,7 +179,7 @@ export default function DateInput(props) {
     return (
       <div className="container">
         <h4>Datum: {props.date}</h4>
-        <div className="row mt-2 align-items-center g-1 g-md-3">
+        <div className="row mt-2 align-items-center g-2">
           <div className="col-4 col-md-auto">
             <select className="form-select" onChange={handleDayChange}>
               <option value="Tag" hidden>

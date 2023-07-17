@@ -7,19 +7,17 @@ import DateInput from "../components/DateInput";
 // array of all possible input methods
 const inputMethods = ["calendar", "dropdown", "oneTextbox", "splitTextbox"];
 // array of all possible dates
-const dates = ["11.01.1011", "22.02.2022", "33.03.3033"];
+const dates = ["17.11.2020", "22.10.1974", "03.04.1998", "11.02.2003"];
 
 export default function StudyPartOne() {
   // bool to disable the button as long as there is no input
-  // TODO: set to true once testing is done
   const [disabled, setDisabled] = useState(true);
 
-  // counter for number of iterations of the study (currently there are 9)
+  // counter for number of iterations of the study (currently there are 16)
   const [counter, setCounter] = useState(0);
 
   // value for the progressbar
-  // TODO: change depending on final number of iterations
-  var progress = counter * 10 + 15;
+  var progress = counter * 5 + 15;
 
   // get the time only once when the page is first loaded
   if (!sessionStorage.getItem("startTime")) {
@@ -30,30 +28,6 @@ export default function StudyPartOne() {
   const createShuffledArray = () => {
     let newArray = createCombinationsArray();
     shuffleArray(newArray);
-
-    // TODO: remove this
-    let object1 = {
-      date: "22.02.2022",
-      inputMethod: "calendar",
-    };
-    let object2 = {
-      date: "22.02.2022",
-      inputMethod: "dropdown",
-    };
-    let object3 = {
-      date: "22.02.2022",
-      inputMethod: "oneTextbox",
-    };
-    let object4 = {
-      date: "22.02.2022",
-      inputMethod: "splitTextbox",
-    };
-    newArray = [];
-    newArray.push(object1);
-    newArray.push(object2);
-    newArray.push(object3);
-    newArray.push(object4);
-
     return newArray;
   };
 
@@ -159,10 +133,9 @@ export default function StudyPartOne() {
   if (useLocation().state?.previousComponent != "instructions") {
     return <Navigate to="/Error" />;
   }
-  // show all 12 possible combinations of the 3 dates and 4 input methods
+  // show all 16 possible combinations of the 4 dates and 4 input methods
   // afterwards go to next screen
-  else if (counter >= 4) {
-    // TODO: set back to 12
+  else if (counter >= 16) {
     return (
       <Navigate
         to="/StudyPartTwo"
@@ -196,29 +169,26 @@ export default function StudyPartOne() {
               date={unusedCombinations[0].date}
               onInputDate={onInputDate}
             />
-
-            <div className="row align-items-center g-3">
-              <div className="col-auto">
-                <button
-                  type="button"
-                  className="btn btn-custom"
-                  disabled={disabled}
-                  aria-disabled={disabled}
-                  onClick={(e) => {
-                    sessionStorage.setItem(
-                      "endTime",
-                      performance.now().toString()
-                    );
-                    setCounter(counter + 1);
-                    setDisabled(true); // TODO: remove for testing
-                    sessionStorage.setItem("progress", progress.toString());
-                    sessionStorage.setItem("counter", counter.toString());
-                    handleSubmit(e);
-                  }}
-                >
-                  Weiter
-                </button>
-              </div>
+            <div className="text-start text-md-start">
+              <button
+                type="button"
+                className="btn btn-custom"
+                disabled={disabled}
+                aria-disabled={disabled}
+                onClick={(e) => {
+                  sessionStorage.setItem(
+                    "endTime",
+                    performance.now().toString()
+                  );
+                  setCounter(counter + 1);
+                  setDisabled(true);
+                  sessionStorage.setItem("progress", progress.toString());
+                  sessionStorage.setItem("counter", counter.toString());
+                  handleSubmit(e);
+                }}
+              >
+                Weiter
+              </button>
             </div>
           </div>
         </div>
