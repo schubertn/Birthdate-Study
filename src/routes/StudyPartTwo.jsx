@@ -4,19 +4,29 @@ import { updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-fi
 import { docRef } from "../firebase";
 import PartTwoInput from "../components/PartTwoInput";
 
+/**
+ * Second part of the study.
+ * Displays an image of each input method. For each method the participants
+ * have to answer two questions using radio buttons with a scale from 1 to 5.
+ */
 export default function StudyPartTwo() {
-  // bool to disable the button as long as there is no input
+  // bool to disable the submit-button as long as the input is not complete
   const [disabled, setDisabled] = useState(true);
 
-  // arrays that will be filled with the selected values for the radio buttons
+  /** array containing the selected values from the radio buttons for the efficiency question */
   var buttonFastArray =
     JSON.parse(window.sessionStorage.getItem("buttonFastArray")) ||
     new Array(4).fill(null);
+
+  /** array containing the selected values from the radio buttons for the simplicity question */
   var buttonEasyArray =
     JSON.parse(window.sessionStorage.getItem("buttonEasyArray")) ||
     new Array(4).fill(null);
 
-  // called every time a new radio button is selected and saves the new value
+  /**
+   * Called every time a new radio button is selected and saves the new value.
+   * Enables submit-button if necessary.
+   */
   const onButtonChange = (buttonValue, method, type) => {
     if (type == "fast") {
       switch (method) {
@@ -68,7 +78,7 @@ export default function StudyPartTwo() {
     }
   };
 
-  // called when the user presses the submit button
+  /** Called when the user presses the submit button. Stores the results in firestore. */
   const handleSubmit = async () => {
     buttonFastArray = JSON.parse(
       window.sessionStorage.getItem("buttonFastArray")
@@ -98,7 +108,9 @@ export default function StudyPartTwo() {
   // prevent user from manually navigating to the second part of the study
   if (useLocation().state?.previousComponent != "studyPartOne") {
     return <Navigate to="/Error" />;
-  } else {
+  }
+  // display the second part of the study
+  else {
     return (
       <div className="container">
         <div className="p-2 m-md-4 m-1 mb-3">

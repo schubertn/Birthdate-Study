@@ -4,34 +4,41 @@ import { updateDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-fi
 import { docRef } from "../firebase";
 import DateInput from "../components/DateInput";
 
-// array of all possible input methods
+/** array of all possible input methods, ordered alphabetically */
 const inputMethods = ["calendar", "dropdown", "oneTextbox", "splitTextbox"];
-// array of all possible dates
+/** array of all possible dates */
 const dates = ["17.11.2020", "22.10.1974", "03.04.1998", "11.02.2003"];
 
+/**
+ * First part of the study.
+ * Displays a date the participants have to put in and measures the time and correctness.
+ * The result are stored by updating the firestore document each time
+ * the participant pressed the "Continue" button. The next date and input method are shown afterwards,
+ * their order is random. There are sixteen iterations in total.
+ */
 export default function StudyPartOne() {
-  // bool to disable the button as long as there is no input
+  // bool to disable the continue-button as long as there is no input
   const [disabled, setDisabled] = useState(true);
 
-  // counter for number of iterations of the study (currently there are 16)
+  // counter for number of iterations of the study (currently there are 16 in total)
   const [counter, setCounter] = useState(0);
 
-  // value for the progressbar
+  /** value for the progressbar */
   var progress = counter * 5 + 15;
 
-  // get the time only once when the page is first loaded
+  // get the start time only once when the page is first loaded and otherwise load it from sessionStorage
   if (!sessionStorage.getItem("startTime")) {
     sessionStorage.setItem("startTime", performance.now().toString());
   }
 
-  // create a shuffled array of all combinations of dates and input methods
+  /** Return a shuffled array of all possible combinations of dates and input methods. */
   const createShuffledArray = () => {
     let newArray = createCombinationsArray();
     shuffleArray(newArray);
     return newArray;
   };
 
-  // create an array with all combinations of dates and input methods
+  /** Return an array with all possible combinations of dates and input methods. */
   const createCombinationsArray = () => {
     const combArray = [];
     for (let i = 0; i < dates.length; i++) {
@@ -46,7 +53,7 @@ export default function StudyPartOne() {
     return combArray;
   };
 
-  // shuffle an array using the Fisher-Yates algorithm
+  /** Shuffle an array using the Fisher-Yates algorithm. */
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -56,7 +63,7 @@ export default function StudyPartOne() {
     }
   };
 
-  // array with all combinations of dates and input methods that have not been used yet
+  /** array with all combinations of dates and input methods that have not been used yet */
   var unusedCombinations =
     JSON.parse(window.sessionStorage.getItem("unusedCombinations")) ||
     createShuffledArray();
@@ -69,6 +76,8 @@ export default function StudyPartOne() {
 
   // the date the user will enter
   const [inputDate, setInputDate] = useState("");
+
+  /** Set the date the user entered and test if the continue-button can be enabled. */
   const onInputDate = (date) => {
     setInputDate(date);
     // allow button to be clicked if all fields have been filled
@@ -81,22 +90,23 @@ export default function StudyPartOne() {
     }
   };
 
-  // calculate the time the user needs until button is pressed
+  /** Calculate the time the user needs until continue-button is pressed. */
   const calculateElapsedTime = () => {
     const startTime = parseFloat(sessionStorage.getItem("startTime")) / 1000.0;
     const endTime = parseFloat(sessionStorage.getItem("endTime")) / 1000.0;
     var timeNeeded = endTime - startTime;
     timeNeeded = Math.round(timeNeeded * 1e2) / 1e2; // round to two decimal places
-    sessionStorage.removeItem("startTime"); // remove this value for the next iteration
+    sessionStorage.removeItem("startTime"); // remove the old start time before the next iteration
     return timeNeeded;
   };
 
-  // called when the user presses the submit button
+  /** Called when the user presses the submit button. Stores the results to firestore. */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // the displayed date and the used input method in this iteration
+    /** the date displayed in this iteration */
     let date = unusedCombinations[0].date;
+    /** the input method used in this iteration */
     let input = unusedCombinations[0].inputMethod;
 
     // remove the used combination (which is the first on in the array) and store the updated array
@@ -106,7 +116,7 @@ export default function StudyPartOne() {
       JSON.stringify(unusedCombinations)
     );
 
-    // bool for correctness of user input
+    /** the correctness of the user input */
     const isInputCorrect = inputDate == date;
 
     // needed for storing the results in firestore
@@ -133,8 +143,7 @@ export default function StudyPartOne() {
   if (useLocation().state?.previousComponent != "instructions") {
     return <Navigate to="/Error" />;
   }
-  // show all 16 possible combinations of the 4 dates and 4 input methods
-  // afterwards go to next screen
+  // go to the next screen if all sixteen possible combinations of date and input method have been shown
   else if (counter >= 16) {
     return (
       <Navigate
@@ -142,7 +151,9 @@ export default function StudyPartOne() {
         state={{ previousComponent: "studyPartOne" }}
       />
     );
-  } else {
+  }
+  // display all 16 possible combinations of the 4 dates and 4 input methods
+  else {
     return (
       <div className="container">
         <div className="p-2 m-md-4 m-1 mb-3">

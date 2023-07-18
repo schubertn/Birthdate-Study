@@ -1,5 +1,8 @@
 import { Navigate, useLocation } from "react-router-dom";
 
+/**
+ * The final page of the application.
+ */
 export default function End() {
   // prevent user from manually navigating here
   if (useLocation().state?.previousComponent != "studyPartTwo") {
@@ -22,7 +25,6 @@ export default function End() {
             </div>
           </div>
         </div>
-
         <div className="p-md-5 p-2 m-md-4 m-1 mb-3 bg-light rounded-3">
           <h3 className="text-center text-md-start">
             Vielen Dank für Ihre Teilnahme!

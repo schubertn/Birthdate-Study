@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 
+/**
+ * The start screen of the application.
+ */
 export default function Home() {
   sessionStorage.clear();
 

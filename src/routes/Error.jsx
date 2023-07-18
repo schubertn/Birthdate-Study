@@ -1,5 +1,8 @@
 import { useRouteError, Link } from "react-router-dom";
 
+/**
+ * The error page for the application. Allows users to navigate back to the home page.
+ */
 export default function Error() {
   const error = useRouteError();
   console.error(error);

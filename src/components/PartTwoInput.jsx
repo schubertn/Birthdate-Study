@@ -6,24 +6,34 @@ PartTwoInput.propTypes = {
   onButtonChange: PropTypes.func,
 };
 
+/**
+ * Component for the second part of the study.
+ * Displays an image of the corresponding input method. For each method the participants
+ * have to answer two questions using radio buttons with a scale from 1 to 5.
+ * The selected values are sent to the StudyPartTwo component.
+ */
 export default function PartTwoInput(props) {
-  // path differs depending on the input method
+  /** image path that differs depending on the input method */
   const imagePath = "/" + props.method + ".jpeg";
 
-  // selected radio button for the fast question (at the beginning, none is selected)
+  // selected radio button for the efficiency question (at the beginning none is selected)
   const [buttonFast, setButtonFast] = useState(0);
-  // selected radio button for the easy question (at the beginning, none is selected)
+  // selected radio button for the simplicity question (at the beginning none is selected)
   const [buttonEasy, setButtonEasy] = useState(0);
 
-  // update selected radio button for the fast question
-  // and send the selected value to the StudyPartTwo component
+  /**
+   * Update selected radio button for the efficiency question
+   * and send the selected value to the StudyPartTwo component.
+   */
   const handleFastButtonChange = (buttonValue) => {
     setButtonFast(buttonValue);
     props.onButtonChange(buttonValue, props.method, "fast");
   };
 
-  // update selected radio button for the easy question
-  // and send the selected value to the StudyPartTwo component
+  /**
+   * Update selected radio button for the simplicity question
+   * and send the selected value to the StudyPartTwo component.
+   */
   const handleEasyButtonChange = (buttonValue) => {
     setButtonEasy(buttonValue);
     props.onButtonChange(buttonValue, props.method, "easy");

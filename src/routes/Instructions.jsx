@@ -2,6 +2,10 @@ import { Link, useLocation, Navigate } from "react-router-dom";
 import { setDoc } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 import { docRef } from "../firebase";
 
+/**
+ * The instructions for the study.
+ * Also creates the firestore document with all the result from one participant.
+ */
 export default function Instructions() {
   const setFirestoreDocRef = async () => {
     await setDoc(docRef, {

@@ -5,7 +5,7 @@ import {
   collection,
 } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
-// the app's firebase configuration
+/** the app's firebase configuration */
 const firebaseConfig = {
   apiKey: "AIzaSyAVa7qvhLgjvWNoserRrEGztH0hXwwSt6E",
   authDomain: "birthdate-study.firebaseapp.com",

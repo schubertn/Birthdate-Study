@@ -8,8 +8,13 @@ DateInput.propTypes = {
   date: PropTypes.string,
 };
 
+/**
+ * Component for the first part of the study.
+ * Displays a date and an input method. The value entered by the participants
+ * is formatted correctly and then sent to the StudyPartOne component.
+ */
 export default function DateInput(props) {
-  // create an array of all days
+  /** Return an array of all days with leading zeroes if necessary. */
   const createDayArray = () => {
     var dayArray = [];
     for (var i = 1; i < 32; i++) {
@@ -22,7 +27,7 @@ export default function DateInput(props) {
     return dayArray;
   };
 
-  // create an array of all years
+  /** Return an array of all years from 1950 to 2023 in ascending order. */
   const createYearArray = () => {
     var yearArray = [];
     for (var i = 1950; i <= 2023; i++) {
@@ -31,7 +36,9 @@ export default function DateInput(props) {
     return yearArray;
   };
 
+  /** days from 01 to 31 */
   const days = createDayArray();
+  /** months from 01 to 12 */
   const months = [
     "01",
     "02",
@@ -46,6 +53,7 @@ export default function DateInput(props) {
     "11",
     "12",
   ];
+  /** years from 1950 to 2023 */
   const years = createYearArray();
 
   // using state to keep track of what the selected day/month/year is
@@ -53,23 +61,33 @@ export default function DateInput(props) {
   const [month, setMonth] = useState("MM");
   const [year, setYear] = useState("JJJJ");
 
-  // the string we will send back to the StudyPartOne component
+  /** the string we will send back to the StudyPartOne component */
   var dateString = "";
 
-  // update the state of day/month/year whenever a new option is selected from the dropdown
-  // and create the string representing the current date
+  /**
+   * Update the state of day whenever a new option is selected from the dropdown-menu
+   * or put in through the split textbox. Create the string representing the current date.
+   */
   const handleDayChange = (e) => {
     setDay(e.target.value);
     dateString = e.target.value + "." + month + "." + year;
     props.onInputDate(dateString);
   };
 
+  /**
+   * Update the state of month whenever a new option is selected from the dropdown-menu
+   * or put in through the split textbox. Create the string representing the current date.
+   */
   const handleMonthChange = (e) => {
     setMonth(e.target.value);
     dateString = day + "." + e.target.value + "." + year;
     props.onInputDate(dateString);
   };
 
+  /**
+   * Update the state of year whenever a new option is selected from the dropdown-menu
+   * or put in through the split textbox. Create the string representing the current date.
+   */
   const handleYearChange = (e) => {
     setYear(e.target.value);
     dateString = day + "." + month + "." + e.target.value;
@@ -80,7 +98,7 @@ export default function DateInput(props) {
   const calendarRef = useRef(null);
   const [calendarValueState, setCalendarValueState] = useState("TT.MM.JJJJ");
 
-  // change the format of the date from YYYY-MM-DD to DD-MM-YYYY
+  /** Change the format of the date from the calendar input from YYYY-MM-DD to DD-MM-YYYY. */
   const handleCalendarInput = (e) => {
     const stringArray = e.target.value.split("-");
     const formattedDate = stringArray.reverse().join(".");
@@ -88,6 +106,7 @@ export default function DateInput(props) {
     props.onInputDate(formattedDate);
   };
 
+  // display the calendar input using a textbox for a consistent UI
   if (props.inputMethod == "calendar") {
     return (
       <div className="container">
@@ -125,7 +144,9 @@ export default function DateInput(props) {
         </div>
       </div>
     );
-  } else if (props.inputMethod == "oneTextbox") {
+  }
+  // display a single textbox as date input
+  else if (props.inputMethod == "oneTextbox") {
     return (
       <div className="container">
         <h4>Datum: {props.date}</h4>
@@ -143,7 +164,9 @@ export default function DateInput(props) {
         </div>
       </div>
     );
-  } else if (props.inputMethod == "splitTextbox") {
+  }
+  // display a split textbox as date input
+  else if (props.inputMethod == "splitTextbox") {
     return (
       <div className="container">
         <h4>Datum: {props.date}</h4>
@@ -175,7 +198,9 @@ export default function DateInput(props) {
         </div>
       </div>
     );
-  } else if (props.inputMethod == "dropdown") {
+  }
+  // display a dropdown-menu as date input
+  else if (props.inputMethod == "dropdown") {
     return (
       <div className="container">
         <h4>Datum: {props.date}</h4>
@@ -219,7 +244,9 @@ export default function DateInput(props) {
         </div>
       </div>
     );
-  } else {
+  }
+  // error case
+  else {
     return <Navigate to="/Error" />;
   }
 }
