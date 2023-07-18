@@ -29,7 +29,11 @@ export default function End() {
           <h3 className="text-center text-md-start">
             Vielen Dank für Ihre Teilnahme!
           </h3>
-          <p className="text-center text-md-start">Studie beendet! Danke!</p>
+          <p className="text-center text-md-start">
+            Die Studie ist nun beendet und Ihre Daten werden anonym gespeichert.
+            Vielen Dank für Ihre Teilnahme. Sie können dieses Fenster nun
+            schließen.
+          </p>
         </div>
       </div>
     );

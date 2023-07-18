@@ -148,9 +148,9 @@ export default function Instructions() {
             gefragt, die Sie auf einer Skala von 1 bis 5 bewerten können.
           </p>
           <p className="text-center text-md-start">
-            Bitte stellen Sie sicher, dass während der gesamten Studie eine
-            stabile Internetverbindung besteht und Sie die Studie nicht
-            zwischenzeitlich unterbrechen.
+            Bitte stellen Sie sicher, dass Sie ein Mobilgerät nutzen und dass
+            Sie während der gesamten Studie eine stabile Internetverbindung
+            besteht und Sie die Studie nicht zwischenzeitlich unterbrechen.
           </p>
           <p className="text-center text-md-start">
             Wenn Sie auf <q>Beginnen</q> klicken, startet die eigentliche

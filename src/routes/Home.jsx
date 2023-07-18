@@ -29,11 +29,15 @@ export default function Home() {
         <p className="text-center text-md-start">
           Ich führe zur derzeit eine Studie im Rahmen meiner Master-Arbeit
           durch. Dazu beschäftige ich mich mit der Eingabe von Geburtsdaten in
-          Online-Formularen. Die Studie nimmt in etwa 10 Minuten in Anspruch und
-          ich wäre Ihnen für Ihre Teilnahme sehr dankbar. Die Angabe von
-          persönlichen Daten ist dazu nicht nötig und die Ergebnisse der Studie
-          werden anonym gespeichert und können Ihnen später nicht zugeordnet
-          werden.
+          Online-Formularen mit Smartphones. Die Studie nimmt in etwa 10 Minuten
+          in Anspruch und ich wäre Ihnen für Ihre Teilnahme sehr dankbar. Die
+          Angabe von persönlichen Daten ist dazu nicht nötig und die Ergebnisse
+          der Studie werden anonym gespeichert und können Ihnen später nicht
+          zugeordnet werden.
+        </p>
+        <p className="text-center text-md-start">
+          Bitte führen Sie die Studie nur durch, wenn Sie gerade ein Mobilgerät
+          nutzen.
         </p>
         <p className="text-center text-md-start">
           Durch das Klicken auf <q>Weiter zur Anleitung</q> bestätigen Sie Ihr
